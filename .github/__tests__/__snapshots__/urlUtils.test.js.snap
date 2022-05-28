@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`utils/urlUtils:buildQuery > should return original url on no query input 1`] = `"https://{hostname}/article/{articleKey}"`;
+
+exports[`utils/urlUtils:buildQuery > should return url with queries on proper input 1`] = `"https://{hostname}/article/{articleKey}?utm_source=share_button&utm_medium=referral&utm_campaign=share_web"`;

@@ -1,0 +1,14 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.hk01.icon.dev",
+      "sha256_cert_fingerprints": [
+        "F4:D0:9F:A7:13:BC:6C:A3:2B:47:8A:A3:22:D6:71:13:CC:BD:AC:D1:98:10:FA:C0:F1:2E:8B:0C:D9:8D:B5:BA",
+        "68:5C:72:76:C5:25:02:ED:7A:E6:37:07:48:6C:64:7E:3D:A1:65:2F:FC:07:7D:F2:D8:2C:46:CE:D5:25:9D:6C",
+        "00:61:66:49:E3:34:C1:DD:31:30:8E:A5:B4:22:F5:41:D3:46:22:27:7D:D8:C5:E6:E5:E7:11:D1:D4:C3:65:EA"
+      ]
+    }
+  }
+]

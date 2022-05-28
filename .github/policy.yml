@@ -1,0 +1,37 @@
+policy:
+  approval:
+    - or:
+        - team-tutor approved
+        - dependabot doing security fix
+  disapproval:
+    requires:
+      organizations:
+        - dse00
+approval_rules:
+  - name: team-tutor approved
+    options:
+      allow_author: true
+      allow_contributor: true
+      invalidate_on_push: true
+      ignore_update_merges: true
+    requires:
+      count: 1
+      teams:
+        - dse00/team-tutor
+  - name: dependabot doing security fix
+    if:
+      only_changed_files:
+        paths:
+          - package.json
+          - package-lock.json
+          - yarn.lock
+      has_author_in:
+        users:
+          - dependabot[bot]
+      only_has_contributors_in:
+        users:
+          - dependabot[bot]
+      targets_branch:
+        pattern: development
+    requires:
+      count: 0

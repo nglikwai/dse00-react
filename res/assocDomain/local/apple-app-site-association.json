@@ -1,0 +1,87 @@
+{
+  "webcredentials": {
+    "apps": [".com.hk01.01icon.stg"]
+  },
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": ".com.hk01.01icon.stg",
+        "paths": [
+          "/",
+          "/devices",
+          "/article/*",
+          "/promotion/*",
+          "/webview/*",
+          "/trending",
+          "/event/*/ticket/*",
+          "/event/*",
+          "/stock/*",
+          "/stock/*/articles",
+          "/index/*",
+          "/index/*/constituents",
+          "/market/*",
+          "/news/*"
+        ],
+        "components": [
+          {
+            "/": "/",
+            "comment": "app launch (no switch tab)"
+          },
+          {
+            "/": "/devices",
+            "comment": "go to bind device"
+          },
+          {
+            "/": "/article/*",
+            "comment": "go to article detail"
+          },
+          {
+            "/": "/promotion/*",
+            "comment": "go to promotion detail (action = close | back)"
+          },
+          {
+            "/": "/webview/*",
+            "comment": "open webview within app (action = close | back)"
+          },
+          {
+            "/": "/trending",
+            "comment": "go to trending list"
+          },
+          {
+            "/": "/event/*/ticket/*",
+            "comment": "go to ticket detail"
+          },
+          {
+            "/": "/event/*",
+            "comment": "go to event detail"
+          },
+          {
+            "/": "/stock/*",
+            "comment": "go to stock detail"
+          },
+          {
+            "/": "/stock/*/articles",
+            "comment": "go to stock detail articles"
+          },
+          {
+            "/": "/index/*",
+            "comment": "go to index detail"
+          },
+          {
+            "/": "/index/*/constituents",
+            "comment": "go to index detail constituents"
+          },
+          {
+            "/": "/market/*",
+            "comment": "go to market article listing"
+          },
+          {
+            "/": "/news/*",
+            "comment": "go to news article listing"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /static/
+Disallow: /articles*
+Disallow: /article/*preview$
+
+Sitemap: https://01icon.hk/sitemap.xml
