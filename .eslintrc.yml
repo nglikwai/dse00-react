@@ -39,7 +39,7 @@ rules:
   no-debugger: 'warn'
   '@typescript-eslint/no-unused-vars': ['error', { 'ignoreRestSiblings': true }]
   no-use-before-define: 'off'
-  '@typescript-eslint/no-use-before-define': error
+  '@typescript-eslint/no-use-before-define': 'off'
 
   # skip this rule if no prop-types
   'react/prop-types': [error, { skipUndeclared: true }]

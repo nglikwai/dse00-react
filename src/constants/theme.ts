@@ -5,6 +5,7 @@ type ThemeStyle = CSSStyleDeclaration['cssText']
 export type Theme = {
   palette: {
     mainTheme: ThemeStyle
+    backgroundColor: ThemeStyle
   }
   fontSizes: string[]
   fontFamily: string
@@ -28,6 +29,7 @@ const mediaQueryBreakpoints = createTheme({
 const theme: Theme = {
   palette: {
     mainTheme: '#cc0000',
+    backgroundColor: '#fff',
   },
   fontSizes: ['14px', '18px', '22px'],
   fontFamily:
