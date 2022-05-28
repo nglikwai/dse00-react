@@ -1,20 +1,20 @@
 import { configureStore } from '@reduxjs/toolkit'
 import createSagaMiddleware from 'redux-saga'
-import articleReducer from 'src/redux/article'
 import { rootSaga } from 'src/redux/rootSaga'
+import tutorReducer from 'src/redux/tutor'
 
-import { financeCnApi } from '../services/financeCnApi'
+import { tutorApi } from '../services/tutorApi'
 
 const sagaMiddleware = createSagaMiddleware()
 
 export const store = configureStore({
   reducer: {
-    [financeCnApi.reducerPath]: financeCnApi.reducer,
-    article: articleReducer,
+    [tutorApi.reducerPath]: tutorApi.reducer,
+    tutor: tutorReducer,
   },
   middleware: getDefaultMiddleware => [
     sagaMiddleware,
-    ...getDefaultMiddleware().concat(financeCnApi.middleware),
+    ...getDefaultMiddleware().concat(tutorApi.middleware),
   ],
 })
 
