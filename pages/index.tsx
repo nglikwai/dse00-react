@@ -58,7 +58,8 @@ const Home: NextPage<Props> = (props: Props) => {
 
 const Title = styled.h2`
   font-size: 20px;
-  margin: 20px 0 0 0;
+  margin: 20px;
+  text-align: center;
 `
 
 const UpperWrapper = styled.div`
@@ -71,7 +72,7 @@ const UpperWrapper = styled.div`
   background-color: ${({ theme }) => theme.palette.backgroundColor};
   display: flex;
   justify-content: center;
-  opacity: 0.8;
+  opacity: 0.9;
   transition: 0.4s;
 `
 
@@ -86,6 +87,7 @@ const Header = styled.div`
 
 const ContentWrapper = styled.div`
   max-width: 1200px;
+  padding: 0 10px;
   margin: 0 auto;
 `
 
@@ -96,7 +98,6 @@ const Section = styled.div`
 const SectionTitle = styled.h3`
   font-size: 20px;
   font-weight: bold;
-  padding: 0 10px;
 `
 
 export async function getServerSideProps() {

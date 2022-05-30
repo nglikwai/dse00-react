@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react'
+import { down } from 'styled-breakpoints'
 import styled from 'styled-components'
 
 type Props = {
@@ -33,6 +34,9 @@ const Select = (props: Props) => {
 const StyledLabel = styled.label`
   margin-right: 10px;
   font-weight: bold;
+  ${down('mobile')} {
+    margin: 0 0 0 10px;
+  }
 `
 
 const StyledSelect = styled.select`
@@ -45,6 +49,9 @@ const StyledSelect = styled.select`
   font-size: 16px;
   padding: 8px 16px;
   cursor: pointer;
+  ${down('mobile')} {
+    width: 30%;
+  }
 `
 
 export default Select

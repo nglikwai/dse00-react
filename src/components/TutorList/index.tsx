@@ -1,6 +1,7 @@
 import React from 'react'
 import TutorCard from 'src/components/TutorCard'
 import { Tutor } from 'src/types'
+import { down } from 'styled-breakpoints'
 import styled from 'styled-components'
 
 type Props = {
@@ -20,9 +21,19 @@ const TutorList = (props: Props) => {
 }
 
 const Wrapper = styled.div`
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 16px;
+  grid-template-columns: auto auto auto auto auto;
+  grid-gap: 16px;
+  ${down('laptop')} {
+    grid-template-columns: auto auto auto auto;
+  }
+  ${down('tablet')} {
+    grid-template-columns: auto auto;
+  }
+  ${down('mobile')} {
+    grid-template-columns: auto;
+  }
 `
 
 export default TutorList

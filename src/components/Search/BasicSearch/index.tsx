@@ -3,7 +3,9 @@ import SearchIcon from 'public/static/images/icon-magnify.svg'
 import React, { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Select from 'src/components/Select'
+import { places, subjects } from 'src/constants/commonList'
 import PATHNAME from 'src/constants/pathname'
+import { down } from 'styled-breakpoints'
 import styled from 'styled-components'
 
 const BasicSearch = () => {
@@ -26,14 +28,14 @@ const BasicSearch = () => {
       <Row>
         <Select
           label={t('components.search.basicSearch.place')}
-          options={[]}
+          options={places}
           value={selectedPlace}
           onSelect={handleOnPlaceSelect}
         />
 
         <Select
           label={t('components.search.basicSearch.subject')}
-          options={[]}
+          options={subjects}
           value={selectedSubject}
           onSelect={handleOnSubjectSelect}
         />
@@ -50,7 +52,6 @@ const BasicSearch = () => {
 
 const Wrapper = styled.div`
   padding: 20px 0;
-  margin: 0 20px;
 `
 
 const Row = styled.div`
@@ -63,6 +64,10 @@ const Row = styled.div`
   justify-content: center;
   padding: 4px 0;
   margin: 0 0 0 0;
+
+  ${down('mobile')} {
+    width: 100%;
+  }
 
   > *:not(:last-child) {
     margin-right: 24px;

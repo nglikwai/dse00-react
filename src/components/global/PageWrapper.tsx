@@ -25,6 +25,7 @@ const PageWrapper = (props: Props) => {
 
 const Wrapper = styled.div`
   background: ${({ theme }) => theme.palette.backgroundColor};
+  font-family: ${({ theme }) => theme.fontFamily};
 `
 
 // https://stackoverflow.com/a/31835167
