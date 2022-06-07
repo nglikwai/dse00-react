@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import IconAccount from 'public/static/images/icon-account.svg'
 import IconMenu from 'public/static/images/icon-menu.svg'
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import PATHNAME from 'src/constants/pathname'
@@ -15,9 +15,28 @@ const Dropdown = () => {
 
   const dispatch = useDispatch()
 
+  const [open, setOpen] = useState(false)
+
   const { isTutor } = useSelector((state: StatusState) => state.user)
 
-  const [open, setOpen] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handler = (event: any) => {
+      if (open && ref.current && !ref.current.contains(event.target)) {
+        setOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handler)
+    document.addEventListener('touchstart', handler)
+
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener('mousedown', handler)
+      document.removeEventListener('touchstart', handler)
+    }
+  }, [open])
 
   return (
     <Wrapper onClick={() => setOpen(!open)}>
@@ -26,7 +45,7 @@ const Dropdown = () => {
         <IconAccount fill='white' />
       </ButtonWrapper>
       {open && (
-        <Menu>
+        <Menu ref={ref}>
           <TabletOnlyItem>
             <Link href={PATHNAME.STUDENTS}>
               <MenuItem>{t('nav.find_student')}</MenuItem>
