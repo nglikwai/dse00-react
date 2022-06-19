@@ -4,6 +4,7 @@ const PATHNAME = {
   TUTORS: '/tutors',
   STUDENTS: '/students',
   NEW_CASE: '/tutor/newcase',
+  FIND_TUTOR: '/',
 }
 
 export default PATHNAME

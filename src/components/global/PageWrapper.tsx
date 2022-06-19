@@ -39,6 +39,7 @@ const InnerWrapper = styled.div`
 const ContentWrapper = styled(props => (
   <div {...R.omit(['withTopPadding'], props)} />
 ))`
+  padding: 10px;
   flex: auto;
   padding-top: ${({ withTopPadding }) => (withTopPadding ? '44px' : '0px')};
   position: relative;

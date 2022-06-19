@@ -21,13 +21,13 @@ const Header = () => {
             <LogoWrapper>{t('common.product_name')}</LogoWrapper>
           </StyledLink>
           {isTutor && (
-            <StyledLink href={PATHNAME.TUTORS}>
+            <StyledLink href={PATHNAME.STUDENTS}>
               <LinkWrapper>{t('nav.find_student')}</LinkWrapper>
             </StyledLink>
           )}
           {!isTutor && (
             <>
-              <StyledLink href={PATHNAME.STUDENTS}>
+              <StyledLink href={PATHNAME.FIND_TUTOR}>
                 <LinkWrapper>{t('nav.find_tutor')}</LinkWrapper>
               </StyledLink>
               <StyledLink href={PATHNAME.NEW_CASE}>
@@ -51,7 +51,6 @@ const OuterWrapper = styled.div`
   display: flex;
   justify-content: center;
   transition: 0.5s;
-  padding: 0 10px;
 `
 
 const Wrapper = styled.div`
