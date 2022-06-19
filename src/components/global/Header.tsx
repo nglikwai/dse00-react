@@ -30,7 +30,7 @@ const Header = () => {
               <StyledLink href={PATHNAME.STUDENTS}>
                 <LinkWrapper>{t('nav.find_tutor')}</LinkWrapper>
               </StyledLink>
-              <StyledLink href='/case/new'>
+              <StyledLink href={PATHNAME.NEW_CASE}>
                 <LinkWrapper>{t('nav.create_case')}</LinkWrapper>
               </StyledLink>
             </>

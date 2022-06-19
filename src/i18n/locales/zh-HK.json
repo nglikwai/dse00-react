@@ -18,7 +18,7 @@
     "logout": "登出",
     "signup": "新用戶",
     "switch_to": "切換至",
-    "comfirm": "確認"
+    "confirm": "確認"
   },
   "nav": {
     "find_student": "尋找學生",
@@ -82,6 +82,18 @@
     "region": "補習區域",
     "building": "大廈名稱",
     "choose_date": "選擇你開始的日期",
-    "teach_location": "補習地點"
+    "teach_location": "補習地點",
+    "hours": "小時",
+    "confirm": "確認建立",
+    "hour_per_lesson": "每堂時數",
+    "lesson_per_month": "每月堂數",
+    "expected_monthly_income": "預計每月收入",
+    "start_day": "開始日期",
+    "location": "補習地點",
+    "contact": "聯絡電話",
+    "location_povided": "導師提供地點",
+    "per_week": "每星期",
+    "start_day_lastest": "最快開始日期",
+    "confirmed": "已確認"
   }
 }

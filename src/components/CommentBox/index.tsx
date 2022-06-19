@@ -11,7 +11,7 @@ const CommentBox = (props: Props) => {
 
   return (
     <CommentWrapper>
-      <img src='/user.png' width='90px' height='90px' />
+      <img src='/static/images/default_avatar.png' width='90px' height='90px' />
       <RightWrapper>
         <Name>陳小明</Name>
         <Comment />

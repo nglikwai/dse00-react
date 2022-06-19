@@ -12,22 +12,23 @@ const TutorCard = (props: Props) => {
   const { tutor } = props
 
   return (
-    <Wrapper>
-      <PopularTag>
-        <HeartIconOutline fill='#eebbbb' />
-      </PopularTag>
-      <Link href='/tutor/1'>
+    <Link href='/tutor/1'>
+      <Wrapper>
+        <PopularTag>
+          <HeartIconOutline fill='#eebbbb' />
+        </PopularTag>
+
         <Avatar
           src='static/images/default_avatar.png'
           alt='Avatar of the tutor'
         />
-      </Link>
 
-      <Name>{tutor.name}</Name>
+        <Name>{tutor.name}</Name>
 
-      <Description>{tutor.intro}</Description>
-      <Name>{tutor.teachingSubjects}</Name>
-    </Wrapper>
+        <Description>{tutor.intro}</Description>
+        <Name>{tutor.teachingSubjects}</Name>
+      </Wrapper>
+    </Link>
   )
 }
 
