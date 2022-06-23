@@ -97,13 +97,13 @@ const Cases: NextPage = () => {
               </ItemsWrapper>
               <ItemsWrapper>
                 <ItemTitle>{t('profile.comment')}</ItemTitle>
-                <Comment />
-                <Comment />
-                <Comment />
-                <Comment />
-                <Comment />
-                <Comment />
-                <Comment />
+                {R.times(
+                  index => (
+                    <Comment key={index} />
+                  ),
+                  10
+                )}
+
                 {!isCommented && <CommentBox onCommented={onCommented} />}
 
                 <MoreButton>{t('profile.more_comment')}</MoreButton>
@@ -136,6 +136,7 @@ const Wrapper = styled.div`
   ${down('tablet')} {
     flex-direction: column;
     width: 100%;
+    align-items: center;
   }
 `
 
@@ -148,10 +149,13 @@ const LeftBarWrapper = styled.div`
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
   ${down('tablet')} {
     justify-content: center;
-    width: 80%;
+    align-items: center;
+    margin: 0;
+    width: 100%;
+    max-width: 400px;
+    padding: 0;
   }
 `
 
@@ -161,6 +165,7 @@ const RightBarWrapper = styled.div`
   width: 70%;
   ${down('tablet')} {
     width: 100%;
+    padding: 0;
   }
 `
 

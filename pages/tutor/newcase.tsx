@@ -241,7 +241,11 @@ const Cases: NextPage = () => {
             </LeftBarWrapper>
 
             <RightBarWrapper>
-              <ConfirmationForm caseUnit={caseUnit} />
+              <ConfirmationForm
+                caseUnit={caseUnit}
+                confirmButtonText={t('newCase.confirm')}
+                confirmedButtonText={t('newCase.confirmed')}
+              />
             </RightBarWrapper>
           </LowerWrapper>
           <ItemsWrapper>

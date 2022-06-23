@@ -92,7 +92,11 @@ const Cases: NextPage<Props> = (props: Props) => {
             </LeftBarWrapper>
 
             <RightBarWrapper>
-              <ConfirmationForm caseUnit={caseUnit} />
+              <ConfirmationForm
+                caseUnit={caseUnit}
+                confirmButtonText={t('case.reserve')}
+                confirmedButtonText={t('case.reserved')}
+              />
             </RightBarWrapper>
           </LowerWrapper>
           <ItemsWrapper>

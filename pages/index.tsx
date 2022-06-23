@@ -1,16 +1,13 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
-import React, { useState } from 'react'
+import { NextSeo } from 'next-seo'
+import React from 'react'
 import { useTranslation } from 'react-i18next'
-import InfiniteScroll from 'react-infinite-scroll-component'
 import PageWrapper from 'src/components/global/PageWrapper'
 import BasicSearch from 'src/components/Search/BasicSearch'
 import TutorList from 'src/components/TutorList'
 import { Tutor } from 'src/types'
 import { down } from 'styled-breakpoints'
 import styled from 'styled-components'
-
-const TUTOR_MAX = 10
 
 type Props = {
   recommendations: Tutor[]
@@ -21,29 +18,26 @@ const Home: NextPage<Props> = (props: Props) => {
 
   const { t } = useTranslation()
 
-  const components = (
-    <Section>
-      <SectionTitle>{t('components.tutorRecommendation.economy')}</SectionTitle>
-      <TutorList tutors={recommendations.slice(0, TUTOR_MAX)} />
-    </Section>
-  )
+  const productName = `${t('common.product_name')}`
 
-  const hasMore = true
-
-  const [data, setData] = useState([components])
-
-  const fetchMoreData = () => {
-    setTimeout(() => {
-      setData(data.concat(components))
-    }, 500)
+  const seoConfig = {
+    title: productName,
+    openGraph: {
+      title: productName,
+      url: `${process.env.NEXT_PUBLIC_HOST_URL}`,
+      images: [
+        {
+          url: `/apple-touch-icon.png`,
+        },
+      ],
+      description: productName,
+      type: 'website',
+    },
   }
 
   return (
     <div>
-      <Head>
-        <title>{t('common.product_name')}</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
+      <NextSeo {...seoConfig} />
 
       <PageWrapper>
         <ContentWrapper>
@@ -59,24 +53,8 @@ const Home: NextPage<Props> = (props: Props) => {
             <SectionTitle>
               {t('components.tutorRecommendation.popular')}
             </SectionTitle>
-            <TutorList tutors={recommendations.slice(0, TUTOR_MAX)} />
+            <TutorList tutors={recommendations} />
           </Section>
-
-          <Section>
-            <SectionTitle>
-              {t('components.tutorRecommendation.economy')}
-            </SectionTitle>
-            <TutorList tutors={recommendations.slice(0, TUTOR_MAX)} />
-          </Section>
-          {data.map(component => component)}
-          <InfiniteScroll
-            dataLength={data.length}
-            next={fetchMoreData}
-            hasMore={hasMore}
-            loader={<h4>Loading...</h4>}
-          >
-            <></>
-          </InfiniteScroll>
         </ContentWrapper>
       </PageWrapper>
     </div>

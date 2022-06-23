@@ -6,6 +6,8 @@ import styled from 'styled-components'
 
 type Props = {
   caseUnit: CaseUnit
+  confirmButtonText?: string
+  confirmedButtonText?: string
 }
 
 const ConfirmationForm = (props: Props) => {
@@ -15,7 +17,7 @@ const ConfirmationForm = (props: Props) => {
 
   const [reserved, setReserved] = useState(false)
 
-  const { caseUnit } = props
+  const { caseUnit, confirmButtonText, confirmedButtonText } = props
 
   return (
     <Wrapper>
@@ -28,11 +30,7 @@ const ConfirmationForm = (props: Props) => {
         onClick={() => setConfirmPopUpVisible(!confirmPopUpVisible)}
         disabled={reserved}
       >
-        {reserved
-          ? `${t('newCase.confirmed')}`
-          : caseUnit.isTutor
-          ? `${t('newCase.reserve_student')}`
-          : `${t('newCase.confirm')}`}
+        {reserved ? confirmedButtonText : confirmButtonText}
       </ReserveButton>
       <ItemsWrapper>
         <Item>

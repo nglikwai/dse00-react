@@ -32,7 +32,7 @@ const Select = (props: Props) => {
 }
 
 const StyledLabel = styled.label`
-  margin-right: 10px;
+  margin-right: 12px;
   font-weight: bold;
   ${down('mobile')} {
     margin: 0 0 0 10px;
@@ -45,7 +45,8 @@ const StyledSelect = styled.select`
   background: #fff;
   width: 100px;
   height: 46px;
-  border: none;
+  border: 1px solid #dedede;
+  border-radius: 2rem;
   font-size: 16px;
   padding: 8px 16px;
   cursor: pointer;

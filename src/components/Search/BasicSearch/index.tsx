@@ -40,7 +40,7 @@ const BasicSearch = () => {
           onSelect={handleOnSubjectSelect}
         />
 
-        <Link href={PATHNAME.TUTORS}>
+        <Link href={PATHNAME.SEARCH}>
           <SearchButtonWrapper>
             <SearchIcon fill='white' />
           </SearchButtonWrapper>

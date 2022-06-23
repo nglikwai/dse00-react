@@ -95,5 +95,9 @@
     "per_week": "每星期",
     "start_day_lastest": "最快開始日期",
     "confirmed": "已確認"
+  },
+  "case": {
+    "reserve": "預約學生",
+    "reserved": "已預約"
   }
 }
