@@ -137,7 +137,10 @@ const FilterWrapper = styled.div`
   width: 100%;
   padding: 0 0 20px 0;
   > * {
-    padding: 20px 0;
+    margin: 20px 0;
+  }
+  ${up('tablet')} {
+    display: none;
   }
 `
 
