@@ -5,6 +5,8 @@ export type Tutor = {
   location: string[]
   teachingSubjects: string[]
   teachingSubjectsPrice: number[]
+  gender: string
+  school: string
 }
 
 export type CaseUnit = {

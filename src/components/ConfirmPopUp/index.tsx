@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import * as R from 'ramda'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
@@ -11,6 +12,8 @@ type Props = {
 }
 
 const ConfirmForm = (props: Props) => {
+  const router = useRouter()
+
   const { t } = useTranslation()
 
   const { caseUnit, onConfirmClick, setReserved } = props
@@ -18,6 +21,7 @@ const ConfirmForm = (props: Props) => {
   const onClickhandler = () => {
     onConfirmClick(false)
     setReserved(true)
+    router.push('/')
   }
 
   return (

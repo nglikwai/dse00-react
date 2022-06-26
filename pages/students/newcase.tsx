@@ -7,7 +7,6 @@ import IconCalendar from 'public/static/images/icon-calendar.svg'
 import IconClock from 'public/static/images/icon-clock.svg'
 import IconGender from 'public/static/images/icon-gender.svg'
 import IconLocation from 'public/static/images/icon-location.svg'
-import * as R from 'ramda'
 import React, { useState } from 'react'
 import { DayPicker } from 'react-dates'
 import { useTranslation } from 'react-i18next'
@@ -261,7 +260,7 @@ const Cases: NextPage = () => {
   )
 }
 
-const Input = styled(props => <input {...R.omit(['withTopPadding'], props)} />)`
+const Input = styled(props => <input {...props} />)`
   &::placeholder {
     font-size: 20px;
   }

@@ -14,7 +14,9 @@ export function* fetchTutorsWorker(
   } = action
 
   try {
-    const response = (yield call(() => fetch('/tutors'))) as Response
+    const response = (yield call(() =>
+      fetch('https://www.dse00.com/tutor')
+    )) as Response
 
     const tutors = (yield response.json()) as Tutor[]
 

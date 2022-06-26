@@ -3,7 +3,7 @@ const PATHNAME = {
   SEARCH: '/search',
   TUTORS: '/tutors',
   STUDENTS: '/students',
-  NEW_CASE: '/tutor/newcase',
+  NEW_CASE: '/students/newcase',
   FIND_TUTOR: '/',
 }
 

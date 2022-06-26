@@ -1,3 +1,4 @@
+import { Switch } from '@mui/material'
 import Link from 'next/link'
 import IconAccount from 'public/static/images/icon-account.svg'
 import IconMenu from 'public/static/images/icon-menu.svg'
@@ -21,6 +22,10 @@ const Dropdown = () => {
 
   const ref = useRef<HTMLDivElement>(null)
 
+  const onClickHandler = () => {
+    setOpen(!open)
+  }
+
   useEffect(() => {
     const handler = (event: any) => {
       if (open && ref.current && !ref.current.contains(event.target)) {
@@ -28,19 +33,19 @@ const Dropdown = () => {
       }
     }
 
-    document.addEventListener('mousedown', handler)
+    document.addEventListener('click', handler)
     document.addEventListener('touchstart', handler)
 
     return () => {
       // Cleanup the event listener
-      document.removeEventListener('mousedown', handler)
+      document.removeEventListener('click', handler)
       document.removeEventListener('touchstart', handler)
     }
   }, [open])
 
   return (
-    <Wrapper onClick={() => setOpen(!open)}>
-      <ButtonWrapper>
+    <Wrapper>
+      <ButtonWrapper onClick={onClickHandler}>
         <IconMenu fill='white' />
         <IconAccount fill='white' />
       </ButtonWrapper>
@@ -54,13 +59,13 @@ const Dropdown = () => {
               <MenuItem>{t('nav.create_case')}</MenuItem>
             </Link>
           </TabletOnlyItem>
-
-          <Link href='/'>
-            <MenuItem onClick={() => dispatch(changeIsTutor())}>
-              {t('buttons.switch_to')}{' '}
-              {!isTutor ? `${t('common.tutor')}` : `${t('common.student')}`}
-            </MenuItem>
-          </Link>
+          <MenuItem>
+            導師模式
+            <Switch
+              checked={isTutor}
+              onChange={() => dispatch(changeIsTutor())}
+            />
+          </MenuItem>
         </Menu>
       )}
     </Wrapper>
@@ -88,8 +93,6 @@ const ButtonWrapper = styled.div`
 
 const Menu = styled.div`
   position: absolute;
-  background-color: rgba(256, 256, 256, 0.6);
-  height: 160px;
   padding: 0 12px;
   border-radius: 1rem;
   top: 60px;
@@ -98,7 +101,7 @@ const Menu = styled.div`
 
 const MenuItem = styled.div`
   &:hover {
-    background-color: #eee;
+    background-color: #efefef;
   }
   background-color: white;
   color: #656565;

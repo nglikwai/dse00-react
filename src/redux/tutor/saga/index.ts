@@ -4,7 +4,7 @@ import { fetchTutorsWorker } from './fetchTutorsWorker'
 
 export function* tutorWatcher() {
   try {
-    yield all([takeLatest('tutor/fetchTutorsRequest', fetchTutorsWorker)])
+    yield all([takeLatest('search/fetchTutorsRequest', fetchTutorsWorker)])
   } catch (e) {
     // TODO: handle error
   }

@@ -1,22 +1,27 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import * as R from 'ramda'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 import PageWrapper from 'src/components/global/PageWrapper'
 import SearchBar from 'src/components/SearchBar'
 import TutorList from 'src/components/TutorList'
 import { Tutor } from 'src/types'
 import { down } from 'styled-breakpoints'
 import styled from 'styled-components'
-type Props = {
-  results: Tutor[]
+
+type StatusState = {
+  tutor: { result: Tutor[]; filteredResult: Tutor[] }
 }
 
-const Search: NextPage<Props> = (props: Props) => {
+const Search: NextPage = () => {
   const router = useRouter()
 
-  const { results } = props
+  const { result, filteredResult } = useSelector(
+    (state: StatusState) => state.tutor
+  )
 
   const { query } = router
 
@@ -40,7 +45,12 @@ const Search: NextPage<Props> = (props: Props) => {
               {t('components.search.basicSearch.place')} : {query.place ?? ''}{' '}
               {t('components.search.basicSearch.subject')}:{query.subject ?? ''}
             </SectionTitle>
-            <TutorList tutors={results} />
+            {!R.isEmpty(result) && (
+              <TutorList
+                hasMore={false}
+                tutors={R.isEmpty(filteredResult) ? result : filteredResult}
+              />
+            )}
           </Section>
         </ContentWrapper>
       </PageWrapper>
@@ -77,10 +87,10 @@ const SectionTitle = styled.h3`
 
 export default Search
 
-export async function getServerSideProps() {
-  const res = await fetch(`https://www.dse00.com/tutor`)
+// export async function getServerSideProps() {
+//   const res = await fetch(`https://www.dse00.com/tutor`)
 
-  const results = await res.json()
+//   const result = await res.json()
 
-  return { props: { results } }
-}
+//   return { props: { result } }
+// }

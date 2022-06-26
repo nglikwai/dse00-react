@@ -53,7 +53,7 @@ const Home: NextPage<Props> = (props: Props) => {
             <SectionTitle>
               {t('components.tutorRecommendation.popular')}
             </SectionTitle>
-            <TutorList tutors={recommendations} />
+            <TutorList hasMore tutors={recommendations} />
           </Section>
         </ContentWrapper>
       </PageWrapper>

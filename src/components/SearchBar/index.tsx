@@ -1,9 +1,11 @@
 import IconMagnify from 'public/static/images/icon-magnify.svg'
 import IconMenu from 'public/static/images/icon-menu.svg'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
 import Select from 'src/components/Select'
 import { places, subjects } from 'src/constants/commonList'
+import { fetchTutorsRequest, searchTutorsRequest } from 'src/redux/tutor'
 import { down, up } from 'styled-breakpoints'
 import styled from 'styled-components'
 
@@ -12,6 +14,8 @@ import PriceSelector from '../PriceSelector'
 
 const SearchBar = () => {
   const { t } = useTranslation()
+
+  const dispatch = useDispatch()
 
   const [selectedPlace, setSelectedPlace] = useState(places[0])
 
@@ -30,6 +34,21 @@ const SearchBar = () => {
   const handleOnSubjectSelect = useCallback((selected: string) => {
     setSelectedSubject(selected)
   }, [])
+
+  useEffect(() => {
+    dispatch(fetchTutorsRequest({}))
+  }, [])
+
+  const handleSeach = () => {
+    const search = {
+      selectedPlace,
+      selectedSubject,
+      selectedGenderIndex,
+      selectedPrice,
+    }
+
+    dispatch(searchTutorsRequest(search))
+  }
 
   return (
     <Wrapper>
@@ -65,7 +84,7 @@ const SearchBar = () => {
           <IconMenu fill='#bbb' />
         </FilterButton>
 
-        <Button>
+        <Button onClick={handleSeach}>
           <IconMagnify fill='white' />
         </Button>
       </SearchWrapper>
