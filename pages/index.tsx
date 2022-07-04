@@ -7,6 +7,7 @@ import InfiniteScroll from 'react-infinite-scroller'
 import { useDispatch, useSelector } from 'react-redux'
 import PageWrapper from 'src/components/global/PageWrapper'
 import PostCard from 'src/components/PostCard'
+import PostLoader from 'src/components/PostLoader'
 import { fetchPostsRequest, fetchPostsSucceed } from 'src/redux/post'
 import { Post, State } from 'src/types'
 type Props = {
@@ -129,14 +130,10 @@ const Home: NextPage<Props> = ({ posts = [] }) => {
           pageStart={0}
           loadMore={loadFunc}
           hasMore={true || false}
-          loader={
-            <div className='loader' key={0}>
-              Loading ...
-            </div>
-          }
+          loader={<PostLoader />}
         >
-          {result.map(post => (
-            <PostCard key={post.title} post={post} />
+          {result.map((post, index) => (
+            <PostCard key={post.title} post={post} index={index} />
           ))}
         </InfiniteScroll>
       </PageWrapper>

@@ -2,14 +2,14 @@ import Link from 'next/link'
 import React from 'react'
 import { Post } from 'src/types'
 import { descriptionFilter } from 'src/utils/urlUtils'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
 import CommentCount from '../CommentCount'
 
-const PostCard = ({ post }: { post: Post }) => {
+const PostCard = ({ post, index }: { post: Post; index: number }) => {
   return (
     <Link href={`/post/${post._id}`}>
-      <Wrapper>
+      <Wrapper index={index % 10}>
         <CommentCount update={post.updatedAt} count={post.reviews.length} />
 
         <Title>
@@ -27,14 +27,19 @@ const PostCard = ({ post }: { post: Post }) => {
 
 export default PostCard
 
-const Wrapper = styled.div`
+const rollIn = keyframes`
+  0% {transform:translateX(-90px)}
+  100% {transform:translateX(0)}
+`
+
+const Wrapper = styled(props => <div {...props} />)`
   :hover {
     background-color: ${({ theme }) => theme.palette.secondaryColor};
   }
   padding: 20px 12px;
-  transition: 0.3s;
   cursor: pointer;
   border-radius: 2rem;
+  animation: ${rollIn} ${props => props.index / 10}s ease-in;
 `
 
 const Title = styled.div`
