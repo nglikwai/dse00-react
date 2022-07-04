@@ -35,7 +35,7 @@ const OuterWrapper = styled.div`
   display: flex;
   justify-content: center;
   transition: 0.5s;
-  position: sticky;
+  position: fixed;
   top: 0;
   opacity: 0.95;
   z-index: ${zIndex.header};

@@ -6,10 +6,12 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import PageWrapper from 'src/components/global/PageWrapper'
 import ReviewCard from 'src/components/ReviewCard'
+import PATHNAME from 'src/constants/pathname'
 import { zIndex } from 'src/constants/zIndex'
 import { Post } from 'src/types'
 import { initializeDayjs } from 'src/utils/urlUtils'
 import styled from 'styled-components'
+
 type Props = {
   post: Post
 }
@@ -66,9 +68,7 @@ type Param = {
   query: { id: string }
 }
 export async function getServerSideProps(param: Param) {
-  const res = await fetch(
-    `https://api-dse00.herokuapp.com/post/${param.query.id}`
-  )
+  const res = await fetch(`${PATHNAME.WEB_LINK}/post/${param.query.id}`)
 
   const post = await res.json()
 

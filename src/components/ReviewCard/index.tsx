@@ -13,14 +13,22 @@ const ReviewCard = ({ review }: { review: Review }) => {
     <OuterWrapper>
       <Wrapper>
         <UserWrapper>
-          <img src='/static/images/default_avatar.png' width={40} height={40} />
-
-          <Grade>{review.author.level > 5 && review.author.grade}</Grade>
+          <Avator
+            src='/static/images/default_avatar.png'
+            width={40}
+            height={40}
+            level={review.author.level}
+          />
         </UserWrapper>
 
         <ReviewWrapper>
           <ReviewBody>
-            <ReviewAuthor>{review.author.username}</ReviewAuthor>
+            <ReviewAuthor>
+              {review.author.username.toUpperCase()}
+              <Grade level={review.author.level}>
+                {review.author.level > 5 && review.author.grade}
+              </Grade>
+            </ReviewAuthor>
             {review.body}
           </ReviewBody>
           <ActionWrapper>
@@ -44,10 +52,15 @@ const ReviewCard = ({ review }: { review: Review }) => {
 
 export default ReviewCard
 
+const Avator = styled(props => <img {...props} />)`
+  box-shadow: 0 0 8px ${props => (props.level > 4 ? '#fff' : 'transparent')};
+  border-radius: 50%;
+`
+
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  padding: 10px 0;
+  padding: 8px 0;
 `
 
 const OuterWrapper = styled.div``
@@ -55,28 +68,33 @@ const OuterWrapper = styled.div``
 const ReviewAuthor = styled.div`
   font-size: 13px;
   font-weight: bold;
-  padding-bottom: 6px;
+  padding-bottom: 4px;
   opacity: 0.7;
+  display: flex;
+  align-items: center;
 `
 
 const ReplyWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-left: 60px;
+  margin: 0 0 10px 60px;
   opacity: 0.8;
 `
 
 const ReviewBody = styled.div`
-  padding: 10px 20px;
+  padding: 6px 10px;
   background-color: ${({ theme }) => theme.palette.tertiaryColor};
-  border-radius: 1rem;
+  border-radius: 0.8rem;
   margin: 2px 0;
 `
 
 const UserWrapper = styled.div``
 
-const Grade = styled.div``
+const Grade = styled(props => <div {...props} />)`
+  margin-left: 10px;
+  text-shadow: 0 0 5px ${props => (props.level > 4 ? '#ffe875' : 'transparent')};
+`
 
 const ActionWrapper = styled.div`
   color: #999;

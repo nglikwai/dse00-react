@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import createSagaMiddleware from 'redux-saga'
+import cutoffReducer from 'src/redux/cutoff'
 import postReducer from 'src/redux/post'
 import { rootSaga } from 'src/redux/rootSaga'
 
@@ -11,6 +12,7 @@ export const store = configureStore({
   reducer: {
     [PostApi.reducerPath]: PostApi.reducer,
     post: postReducer,
+    cutoff: cutoffReducer,
   },
   middleware: getDefaultMiddleware => [
     sagaMiddleware,

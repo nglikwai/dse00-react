@@ -1,5 +1,6 @@
 import { PayloadAction } from '@reduxjs/toolkit'
 import { call, put } from 'redux-saga/effects'
+import PATHNAME from 'src/constants/pathname'
 import { fetchPostsSucceed } from 'src/redux/post'
 import { Post } from 'src/types'
 
@@ -12,7 +13,7 @@ export function* fetchPostsWorker(
   try {
     const response = (yield call(() =>
       fetch(
-        `https://api-dse00.herokuapp.com/apis/posts?page=${action.payload.page}&limit=10`
+        `${PATHNAME.WEB_LINK}/apis/posts?page=${action.payload.page}&limit=10`
       )
     )) as Response
 

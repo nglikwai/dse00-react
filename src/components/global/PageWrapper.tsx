@@ -34,7 +34,7 @@ const InnerWrapper = styled.div`
   flex-direction: column;
   min-height: calc(100vh - 165px);
   max-width: 1200px;
-  padding: 10px 10px 100px 10px;
+  padding: 60px 10px 100px 10px;
   margin: 0 auto;
 `
 

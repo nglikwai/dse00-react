@@ -62,4 +62,20 @@ export type ReplyAuthor = string[]
 
 export type State = {
   post: { result: Post[]; currentPage: number }
+  cutoff: { result: Cutoff[] }
+}
+
+export type Cutoff = {
+  '2': number[]
+  '3': number[]
+  '4': number[]
+  '5': number[]
+  '6': number[]
+  '7': number[]
+  category: string
+  createdAt: Date
+  updatedAt: Date
+  title: string
+  years: string[]
+  fullScore: number[]
 }

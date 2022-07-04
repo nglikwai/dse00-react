@@ -41,7 +41,7 @@ const Footer = () => {
             JUPAS
           </Item>
         </Link>
-        <Link href='/users/login'>
+        <Link href='/user/login'>
           <Item>
             <User fill='white' />
             登入

@@ -1,5 +1,6 @@
 import { all, fork } from 'redux-saga/effects'
 
+import { cutoffWatcher } from './cutoff/saga'
 import { postWatcher } from './post/saga'
 
 const combineSagas = (sagas: any) =>
@@ -14,4 +15,5 @@ const combineSagas = (sagas: any) =>
 export const rootSaga = combineSagas([
   // sagas
   postWatcher,
+  cutoffWatcher,
 ])
