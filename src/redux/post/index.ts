@@ -4,6 +4,8 @@ import { Post } from 'src/types'
 import {
   FetchPostsRequestPayload,
   FetchPostsSuccessPayload,
+  PostRequestPayload,
+  PostSucceedPayload,
   PostTypes,
 } from './types'
 
@@ -11,12 +13,14 @@ export interface SearchState {
   result: Post[]
   fetching: boolean
   currentPage: number
+  status: string
 }
 
 const initialState: SearchState = {
   result: [],
   fetching: false,
   currentPage: 1,
+  status: '',
 }
 
 export const postSlice = createSlice({
@@ -41,6 +45,20 @@ export const postSlice = createSlice({
     [PostTypes.fetchPostsFailed]: state => {
       state.fetching = false
     },
+    [PostTypes.postRequest]: (
+      state,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      action: PayloadAction<PostRequestPayload>
+    ) => {
+      state.fetching = true
+    },
+    [PostTypes.postSucceed]: (
+      state,
+      action: PayloadAction<PostSucceedPayload>
+    ) => {
+      state.fetching = false
+      state.result = [action.payload.status.post].concat(state.result)
+    },
   },
 })
 
@@ -48,6 +66,8 @@ export const {
   fetchPostsRequest,
   fetchPostsSucceed,
   fetchPostsFailed,
+  postRequest,
+  postSucceed,
 } = postSlice.actions
 
 export default postSlice.reducer

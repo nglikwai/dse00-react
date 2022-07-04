@@ -68,7 +68,7 @@ type Param = {
   query: { id: string }
 }
 export async function getServerSideProps(param: Param) {
-  const res = await fetch(`${PATHNAME.WEB_LINK}/post/${param.query.id}`)
+  const res = await fetch(`${PATHNAME.WEB_LINK}/posts/${param.query.id}`)
 
   const post = await res.json()
 

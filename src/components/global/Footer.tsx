@@ -5,10 +5,26 @@ import Jupas from 'public/static/images/icon-graduation.svg'
 import Blogger from 'public/static/images/icon-post.svg'
 import Cutoff from 'public/static/images/icon-school.svg'
 import Send from 'public/static/images/icon-send.svg'
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { postRequest } from 'src/redux/post'
 import styled from 'styled-components'
 
 const Footer = () => {
+  const [term, setTerm] = useState('')
+
+  const dispatch = useDispatch()
+
+  const handleSubmit = () => {
+    dispatch(
+      postRequest({
+        title: term,
+        description: '如題',
+      })
+    )
+    setTerm('')
+  }
+
   return (
     <Wrapper>
       <FooterWrapper>
@@ -26,8 +42,8 @@ const Footer = () => {
         </Link>
 
         <Item>
-          <Input />
-          <SendButton className='nav-chat-button'>
+          <Input value={term} onChange={e => setTerm(e.target.value)} />
+          <SendButton className='nav-chat-button' onClick={handleSubmit}>
             <Send fill='white' />
           </SendButton>
           <BackButton>
