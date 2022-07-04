@@ -66,7 +66,9 @@ type Param = {
   query: { id: string }
 }
 export async function getServerSideProps(param: Param) {
-  const res = await fetch(`http://localhost:4000/post/${param.query.id}`)
+  const res = await fetch(
+    `https://api-dse00.herokuapp.com/post/${param.query.id}`
+  )
 
   const post = await res.json()
 

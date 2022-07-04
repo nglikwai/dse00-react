@@ -69,7 +69,9 @@ const Home: NextPage<Props> = ({ posts = [] }) => {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(`http://localhost:4000/apis/posts?page=1&limit=10`)
+  const res = await fetch(
+    `https://api-dse00.herokuapp.com/apis/posts?page=1&limit=10`
+  )
 
   const posts = await res.json()
 

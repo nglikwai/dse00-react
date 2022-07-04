@@ -12,7 +12,7 @@ export function* fetchPostsWorker(
   try {
     const response = (yield call(() =>
       fetch(
-        `http://localhost:4000/apis/posts?page=${action.payload.page}&limit=10`
+        `https://api-dse00.herokuapp.com/apis/posts?page=${action.payload.page}&limit=10`
       )
     )) as Response
 
