@@ -6,6 +6,14 @@ const { relative } = require('path')
 
 const context = __dirname
 
+const withPWA = require('next-pwa')
+
+module.exports = withPWA({
+  pwa: {
+    dest: 'public',
+  },
+})
+
 const nextConfig = {
   reactStrictMode: true,
   webpack: (config, { defaultLoaders }) => {
