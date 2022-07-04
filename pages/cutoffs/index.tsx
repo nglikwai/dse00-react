@@ -1,11 +1,12 @@
 import type { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import CutoffCard from 'src/components/CutoffCard'
 import CutoffSelector from 'src/components/CutoffSelector'
 import PageWrapper from 'src/components/global/PageWrapper'
+import { cutoffCategory } from 'src/constants'
 import PATHNAME from 'src/constants/pathname'
 import { fetchCutoffsSucceed } from 'src/redux/cutoff'
 import { Cutoff, State } from 'src/types'
@@ -41,15 +42,19 @@ const MainPost: NextPage<Props> = ({ cutoffs }: Props) => {
     },
   }
 
+  const [category, setCategory] = useState(cutoffCategory[0])
+
   return (
     <>
       <NextSeo {...seoConfig} />
 
       <PageWrapper>
-        <CutoffSelector />
-        {result.map(cutoff => (
-          <CutoffCard key={cutoff.title} cutoff={cutoff} />
-        ))}
+        <CutoffSelector setCategory={setCategory} />
+        {result
+          .filter(subject => subject.category === category)
+          .map(cutoff => (
+            <CutoffCard key={cutoff.title} cutoff={cutoff} />
+          ))}
       </PageWrapper>
     </>
   )

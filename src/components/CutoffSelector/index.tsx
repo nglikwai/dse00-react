@@ -1,15 +1,15 @@
 import 'swiper/css'
 
 import React from 'react'
-import { useDispatch } from 'react-redux'
 import { cutoffCategory } from 'src/constants'
-import { fetchCutoffsRequest } from 'src/redux/cutoff'
 import styled from 'styled-components'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-const CutoffSelector = () => {
-  const dispatch = useDispatch()
-
+const CutoffSelector = ({
+  setCategory,
+}: {
+  setCategory: (category: string) => void
+}) => {
   return (
     <Wrapper>
       <InnerWrapper>
@@ -17,11 +17,7 @@ const CutoffSelector = () => {
           spaceBetween={50}
           slidesPerView={1}
           onSlideChange={swiper =>
-            dispatch(
-              fetchCutoffsRequest({
-                category: cutoffCategory[swiper.activeIndex],
-              })
-            )
+            setCategory(cutoffCategory[swiper.activeIndex])
           }
           onSwiper={swiper => console.log(swiper)}
         >
