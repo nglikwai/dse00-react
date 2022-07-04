@@ -1,24 +1,20 @@
 import { configureStore } from '@reduxjs/toolkit'
 import createSagaMiddleware from 'redux-saga'
-import pageReducer from 'src/redux/page'
+import postReducer from 'src/redux/post'
 import { rootSaga } from 'src/redux/rootSaga'
-import tutorReducer from 'src/redux/tutor'
-import userReducer from 'src/redux/user'
 
-import { tutorApi } from '../services/tutorApi'
+import { PostApi } from '../services/PostApi'
 
 const sagaMiddleware = createSagaMiddleware()
 
 export const store = configureStore({
   reducer: {
-    [tutorApi.reducerPath]: tutorApi.reducer,
-    tutor: tutorReducer,
-    page: pageReducer,
-    user: userReducer,
+    [PostApi.reducerPath]: PostApi.reducer,
+    post: postReducer,
   },
   middleware: getDefaultMiddleware => [
     sagaMiddleware,
-    ...getDefaultMiddleware().concat(tutorApi.middleware),
+    ...getDefaultMiddleware().concat(PostApi.middleware),
   ],
 })
 

@@ -1,12 +1,12 @@
 {
   "common": {
     "company_name": "DSE00",
-    "product_name": "DSE00 Tutor",
-    "description": "DSE00 Tutor是屬於DSE00的補習配對平台，用戶可以尋找合適導師或學生。",
+    "product_name": "DSE00",
+    "description": "DSE00 Post是屬於DSE00的補習配對平台，用戶可以尋找合適導師或學生。",
     "or": "或",
-    "welcome": "歡迎來到 DSE00 Tutor",
+    "welcome": "歡迎來到 DSE00 Post",
     "student": "學生",
-    "tutor": "導師"
+    "Post": "導師"
   },
   "buttons": {
     "search": "搜尋",
@@ -22,21 +22,29 @@
   },
   "nav": {
     "find_student": "尋找學生",
-    "find_tutor": "尋找補習老師",
-    "create_case": "建立補習個案"
+    "find_Post": "尋找補習老師",
+    "create_case": "建立補習個案",
+    "Post_mode": "導師模式"
   },
   "components": {
     "search": {
       "basicSearch": {
         "result": "你的搜尋導師",
-        "find_tutor": "尋找補習老師",
+        "find_Post": "尋找補習老師",
         "find_student": "尋找你的學生",
         "place": "地點",
         "subject": "科目",
         "searching": "搜尋中..."
       }
     },
-    "tutorRecommendation": {
+    "searchBar": {
+      "tuition_fee": "學費",
+      "within": "之內",
+      "all_gender": "所有性別",
+      "male": "男性",
+      "female": "女性"
+    },
+    "PostRecommendation": {
       "popular": "熱門導師",
       "economy": "實惠導師",
       "star": "升級導師"

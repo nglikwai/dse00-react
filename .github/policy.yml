@@ -1,14 +1,14 @@
 policy:
   approval:
     - or:
-        - team-tutor approved
+        - team-Post approved
         - dependabot doing security fix
   disapproval:
     requires:
       organizations:
         - dse00
 approval_rules:
-  - name: team-tutor approved
+  - name: team-Post approved
     options:
       allow_author: true
       allow_contributor: true
@@ -17,7 +17,7 @@ approval_rules:
     requires:
       count: 1
       teams:
-        - dse00/team-tutor
+        - dse00/team-Post
   - name: dependabot doing security fix
     if:
       only_changed_files:

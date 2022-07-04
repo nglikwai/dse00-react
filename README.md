@@ -1,6 +1,6 @@
-# DSE00 Tutor Web
+# DSE00 Post Web
 
-DSE00 Tutor Web is a client facing Frontend product featuring tutor and student matching.
+DSE00 Post Web is a client facing Frontend product featuring Post and student matching.
 
 ## Getting started
 
@@ -27,11 +27,11 @@ Before run this project, you need to install
 
 ## Environments
 
-| Environment | Host                            | Branch        | .env               | NODE_ENV      | APP_ENV       |
-| ----------- | ------------------------------- | ------------- | ------------------ | ------------- | ------------- |
-| local       | http://localhost:3000/          | `n/a`         | `.env.cmdrc`       | `development` | `any`         |
-| development | https://dse00-tutor.netlify.app | `development` | `.env.development` | `production`  | `development` |
-| production  | https://tutor.dse00.com/        | `production`  | `.env.production`  | `production`  | `production`  |
+| Environment | Host                           | Branch        | .env               | NODE_ENV      | APP_ENV       |
+| ----------- | ------------------------------ | ------------- | ------------------ | ------------- | ------------- |
+| local       | http://localhost:3000/         | `n/a`         | `.env.cmdrc`       | `development` | `any`         |
+| development | https://dse00-Post.netlify.app | `development` | `.env.development` | `production`  | `development` |
+| production  | https://Post.dse00.com/        | `production`  | `.env.production`  | `production`  | `production`  |
 
 ## Coding
 
@@ -50,4 +50,4 @@ Before commit, please make sure:
 - Direct commit to staging / release / master branch is prohibited
 - Commit message should follow [conventional commit](https://www.conventionalcommits.org/en/v1.0.0)
 - JIRA task number is **REQUIRED** on your commit message, if it exists
-- Commit message sample `fix: [TUTOR-1000] tutor list display error`
+- Commit message sample `fix: [Post-1000] Post list display error`

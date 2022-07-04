@@ -1,10 +1,10 @@
 const PATHNAME = {
   HOME_PAGE: '/',
   SEARCH: '/search',
-  TUTORS: '/tutors',
+  PostS: '/Posts',
   STUDENTS: '/students',
   NEW_CASE: '/students/newcase',
-  FIND_TUTOR: '/',
+  FIND_Post: '/',
 }
 
 export default PATHNAME

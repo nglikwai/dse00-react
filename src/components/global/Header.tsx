@@ -1,43 +1,27 @@
 import Link from 'next/link'
+import Darkmode from 'public/static/images/icon-darkmode.svg'
+import Home from 'public/static/images/icon-home.svg'
 import React from 'react'
-import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
-import Dropdown from 'src/components/Dropdown'
-import PATHNAME from 'src/constants/pathname'
-import { StatusState } from 'src/redux/page/types'
-import { down } from 'styled-breakpoints'
+import { zIndex } from 'src/constants/zIndex'
 import styled from 'styled-components'
+type Props = {
+  darkmode: boolean
+  setDarkmode: (darkmode: boolean) => void
+}
 
-const Header = () => {
-  const { isTutor } = useSelector((state: StatusState) => state.user)
-
-  const { t } = useTranslation()
-
+const Header = ({ darkmode, setDarkmode }: Props) => {
   return (
     <OuterWrapper>
       <Wrapper>
         <LeftWrapper>
-          <StyledLink href={PATHNAME.HOME_PAGE}>
-            <LogoWrapper>{t('common.product_name')}</LogoWrapper>
-          </StyledLink>
-          {isTutor && (
-            <StyledLink href={PATHNAME.STUDENTS}>
-              <LinkWrapper>{t('nav.find_student')}</LinkWrapper>
-            </StyledLink>
-          )}
-          {!isTutor && (
-            <>
-              <StyledLink href={PATHNAME.FIND_TUTOR}>
-                <LinkWrapper>{t('nav.find_tutor')}</LinkWrapper>
-              </StyledLink>
-              <StyledLink href={PATHNAME.NEW_CASE}>
-                <LinkWrapper>{t('nav.create_case')}</LinkWrapper>
-              </StyledLink>
-            </>
-          )}
+          <Link href='/'>
+            <Home fill='white' />
+          </Link>
         </LeftWrapper>
         <RightWrapper>
-          <Dropdown />
+          <DarkmodeButton onClick={() => setDarkmode(!darkmode)}>
+            <Darkmode fill='#fff' />
+          </DarkmodeButton>
         </RightWrapper>
       </Wrapper>
     </OuterWrapper>
@@ -51,6 +35,10 @@ const OuterWrapper = styled.div`
   display: flex;
   justify-content: center;
   transition: 0.5s;
+  position: sticky;
+  top: 0;
+  opacity: 0.95;
+  z-index: ${zIndex.header};
 `
 
 const Wrapper = styled.div`
@@ -70,31 +58,10 @@ const RightWrapper = styled.div`
   align-items: flex-end;
 `
 
-const LogoWrapper = styled.span`
-  &:hover {
-    text-shadow: 0 0 20px #fff;
-  }
-  transition: 0.4s;
-  font-size: 20px;
+const DarkmodeButton = styled.button`
+  background: none;
+  border: none;
   cursor: pointer;
-  font-weight: bold;
-  padding: 0 20px 0 0px;
 `
-
-const LinkWrapper = styled.span`
-  &:hover {
-    text-shadow: 0 0 20px #fff;
-  }
-  transition: 0.4s;
-  font-size: 16px;
-  cursor: pointer;
-  padding: 0 20px;
-
-  ${down('tablet')} {
-    display: none;
-  }
-`
-
-const StyledLink = styled(Link)``
 
 export default Header

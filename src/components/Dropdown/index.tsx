@@ -1,13 +1,11 @@
-import { Switch } from '@mui/material'
-import Link from 'next/link'
 import IconAccount from 'public/static/images/icon-account.svg'
 import IconMenu from 'public/static/images/icon-menu.svg'
 import React, { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import PATHNAME from 'src/constants/pathname'
+import Switch from 'src/components/Switch'
 import { StatusState } from 'src/redux/page/types'
-import { changeIsTutor } from 'src/redux/user'
+import { changeIsPost } from 'src/redux/user'
 import { up } from 'styled-breakpoints'
 import styled from 'styled-components'
 
@@ -18,7 +16,7 @@ const Dropdown = () => {
 
   const [open, setOpen] = useState(false)
 
-  const { isTutor } = useSelector((state: StatusState) => state.user)
+  const { isPost } = useSelector((state: StatusState) => state.user)
 
   const ref = useRef<HTMLDivElement>(null)
 
@@ -51,19 +49,12 @@ const Dropdown = () => {
       </ButtonWrapper>
       {open && (
         <Menu ref={ref}>
-          <TabletOnlyItem>
-            <Link href={PATHNAME.STUDENTS}>
-              <MenuItem>{t('nav.find_student')}</MenuItem>
-            </Link>
-            <Link href='/case/new'>
-              <MenuItem>{t('nav.create_case')}</MenuItem>
-            </Link>
-          </TabletOnlyItem>
+          <TabletOnlyItem />
           <MenuItem>
-            導師模式
+            <span style={{ marginRight: '12px' }}>{t('nav.Post_mode')}</span>
             <Switch
-              checked={isTutor}
-              onChange={() => dispatch(changeIsTutor())}
+              checked={isPost}
+              onChange={() => dispatch(changeIsPost())}
             />
           </MenuItem>
         </Menu>
@@ -93,7 +84,6 @@ const ButtonWrapper = styled.div`
 
 const Menu = styled.div`
   position: absolute;
-  padding: 0 12px;
   border-radius: 1rem;
   top: 60px;
   z-index: 10;
@@ -111,6 +101,9 @@ const MenuItem = styled.div`
   border-radius: 1.5rem;
   transition: 0.4s;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `
 
 const TabletOnlyItem = styled.div`

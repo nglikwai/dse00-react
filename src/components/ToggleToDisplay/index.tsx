@@ -11,8 +11,6 @@ const ToggleToDisplay = (props: Props) => {
 
   const [visible, setVisible] = useState(false)
 
-  console.log(Children.toArray(children).length)
-
   return (
     <Wrapper>
       <ToggleButton onClick={() => setVisible(!visible)}>
@@ -22,7 +20,7 @@ const ToggleToDisplay = (props: Props) => {
       </ToggleButton>
       <DetailToggle
         visible={visible}
-        height={`${Children.toArray(children).length * 30}px`}
+        height={`${Children.toArray(children).length * 31}px`}
       >
         {children}
       </DetailToggle>

@@ -3,19 +3,17 @@ import React from 'react'
 import styled from 'styled-components'
 
 import Footer from './Footer'
-import Header from './Header'
 
 type Props = {
   children: React.ReactNode
 }
 
 const PageWrapper = (props: Props) => {
-  const { children, ...restProps } = props
+  const { children } = props
 
   return (
-    <Wrapper {...restProps}>
+    <Wrapper>
       <InnerWrapper>
-        <Header />
         <ContentWrapper withTopPadding>{children}</ContentWrapper>
         <Footer />
       </InnerWrapper>
@@ -26,6 +24,7 @@ const PageWrapper = (props: Props) => {
 const Wrapper = styled.div`
   background: ${({ theme }) => theme.palette.backgroundColor};
   font-family: ${({ theme }) => theme.fontFamily};
+  transition: 1s;
 `
 
 // https://stackoverflow.com/a/31835167
@@ -33,16 +32,19 @@ const InnerWrapper = styled.div`
   display: flex;
   flex: auto;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: calc(100vh - 165px);
+  max-width: 1200px;
+  padding: 10px 10px 100px 10px;
+  margin: 0 auto;
 `
 
 const ContentWrapper = styled(props => (
   <div {...R.omit(['withTopPadding'], props)} />
 ))`
-  padding: 10px;
+  padding: 10px 0;
   flex: auto;
-  padding-top: ${({ withTopPadding }) => (withTopPadding ? '44px' : '0px')};
   position: relative;
+  color: ${({ theme }) => theme.fontColor};
 `
 
 export default PageWrapper

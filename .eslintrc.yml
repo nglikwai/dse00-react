@@ -28,6 +28,7 @@ extends:
   - plugin:ramda/recommended
   - plugin:@typescript-eslint/eslint-recommended
   - plugin:prettier/recommended
+  # - some-other-config-you-use
 
 settings:
   react:

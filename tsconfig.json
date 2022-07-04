@@ -9,6 +9,7 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
@@ -21,7 +22,8 @@
     "pages/**/*.tsx",
     "public/**/*.svg",
     "src/**/*.ts",
-    "src/**/*.tsx"
+    "src/**/*.tsx",
+    "pages/post/.[id].tsx"
   ],
   "exclude": ["node_modules", ".next", "out"],
   "files": ["server.js"]

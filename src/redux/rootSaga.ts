@@ -1,6 +1,6 @@
 import { all, fork } from 'redux-saga/effects'
 
-import { tutorWatcher } from './tutor/saga'
+import { postWatcher } from './post/saga'
 
 const combineSagas = (sagas: any) =>
   function* rootSaga() {
@@ -13,5 +13,5 @@ const combineSagas = (sagas: any) =>
 
 export const rootSaga = combineSagas([
   // sagas
-  tutorWatcher,
+  postWatcher,
 ])
