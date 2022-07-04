@@ -1,6 +1,6 @@
 const webLink = {
   development: 'http://localhost:4000',
-  production: 'https://api-dse00.herokuapp.com/',
+  production: 'https://api-dse00.herokuapp.com',
 }
 
 const PATHNAME = {

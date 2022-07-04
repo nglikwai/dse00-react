@@ -12,9 +12,7 @@ export function* fetchPostsWorker(
   console.log(action.payload.page)
   try {
     const response = (yield call(() =>
-      fetch(
-        `${PATHNAME.WEB_LINK}/apis/posts?page=${action.payload.page}&limit=10`
-      )
+      fetch(`${PATHNAME.WEB_LINK}/posts?page=${action.payload.page}&limit=10`)
     )) as Response
 
     const posts = (yield response.json()) as Post[]

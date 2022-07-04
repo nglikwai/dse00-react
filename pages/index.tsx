@@ -143,7 +143,7 @@ const Home: NextPage<Props> = ({ posts = [] }) => {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(`${PATHNAME.WEB_LINK}/apis/posts?page=1&limit=10`)
+  const res = await fetch(`${PATHNAME.WEB_LINK}/posts?page=1&limit=10`)
 
   const posts = await res.json()
 
