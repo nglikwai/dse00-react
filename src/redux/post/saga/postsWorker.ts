@@ -25,9 +25,7 @@ export function* fetchPostsWorker(
 }
 
 export function* postWorker(action: PayloadAction<PostRequestPayload>) {
-  console.log(action.payload)
-
-  const { title, description } = action.payload
+  const { title } = action.payload
 
   const requestOptions = {
     method: 'POST',
@@ -36,7 +34,7 @@ export function* postWorker(action: PayloadAction<PostRequestPayload>) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      title: 'testtesttesttest',
+      title,
       description: '如題',
     }),
   }
@@ -44,10 +42,7 @@ export function* postWorker(action: PayloadAction<PostRequestPayload>) {
   console.log(requestOptions)
   try {
     const response = (yield call(() =>
-      fetch(
-        `${PATHNAME.WEB_LINK}/posts?title=${title}&description=${description}`,
-        requestOptions
-      )
+      fetch(`${PATHNAME.WEB_LINK}/posts`, requestOptions)
     )) as Response
 
     const status = (yield response.json()) as { status: string; post: Post }

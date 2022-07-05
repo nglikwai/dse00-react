@@ -131,7 +131,7 @@ const Home: NextPage<Props> = ({ posts = [] }) => {
           pageStart={0}
           loadMore={loadFunc}
           hasMore={true || false}
-          loader={<PostLoader />}
+          loader={<PostLoader key={Math.floor(Math.random())} />}
         >
           {result.map((post, index) => (
             <PostCard key={post.title} post={post} index={index} />
@@ -143,7 +143,7 @@ const Home: NextPage<Props> = ({ posts = [] }) => {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(`${PATHNAME.WEB_LINK}/posts?page=1&limit=10`)
+  const res = await fetch(`${PATHNAME.WEB_LINK}/posts?page=1&limit=20`)
 
   const posts = await res.json()
 

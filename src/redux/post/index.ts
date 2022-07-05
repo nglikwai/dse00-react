@@ -19,7 +19,7 @@ export interface SearchState {
 const initialState: SearchState = {
   result: [],
   fetching: false,
-  currentPage: 1,
+  currentPage: 3,
   status: '',
 }
 

@@ -63,6 +63,7 @@ export type ReplyAuthor = string[]
 export type State = {
   post: { result: Post[]; currentPage: number }
   cutoff: { result: Cutoff[] }
+  user: { isDarkmode: boolean }
 }
 
 export type Cutoff = {
