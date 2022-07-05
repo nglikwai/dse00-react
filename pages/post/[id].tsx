@@ -1,14 +1,20 @@
 import dayjs from 'dayjs'
 import type { NextPage } from 'next'
+import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import * as R from 'ramda'
-import React from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
+import ChatInputBox from 'src/components/ChatInputBox'
+import CrossButton from 'src/components/CrossButton'
+import Footer from 'src/components/global/Footer'
 import PageWrapper from 'src/components/global/PageWrapper'
 import ReviewCard from 'src/components/ReviewCard'
 import PATHNAME from 'src/constants/pathname'
 import { zIndex } from 'src/constants/zIndex'
-import { Post } from 'src/types'
+import { deletePostRequest } from 'src/redux/post'
+import { Post, State } from 'src/types'
 import { initializeDayjs } from 'src/utils/urlUtils'
 import styled from 'styled-components'
 
@@ -17,11 +23,25 @@ type Props = {
 }
 
 const MainPost: NextPage<Props> = ({ post }: Props) => {
+  const content = useMemo(() => <ChatInputBox />, [])
+
   const { t } = useTranslation()
+
+  const router = useRouter()
+
+  const dispatch = useDispatch()
 
   initializeDayjs()
 
   const productName = `${t('common.product_name')}`
+
+  const { addedReview, isDelete } = useSelector((state: State) => state.post)
+
+  useEffect(() => {
+    return () => {
+      router.push('/')
+    }
+  }, [isDelete, router])
 
   const seoConfig = {
     title: productName,
@@ -38,12 +58,17 @@ const MainPost: NextPage<Props> = ({ post }: Props) => {
     },
   }
 
+  const onClickDelete = () => {
+    dispatch(deletePostRequest({ id: router.query.id }))
+  }
+
   return (
     <>
       <NextSeo {...seoConfig} />
 
       <PageWrapper>
         <Title>{post.title}</Title>
+        <CrossButton onClick={onClickDelete} />
         <Header>
           <img src='/static/images/default_avatar.png' width={60} height={60} />
           <UserData>
@@ -57,8 +82,11 @@ const MainPost: NextPage<Props> = ({ post }: Props) => {
           {post.reviews.map(review => (
             <ReviewCard review={review} key={review.body} />
           ))}
+          {!R.isEmpty(addedReview) && <ReviewCard review={addedReview} />}
+
           {R.isEmpty(post.reviews) && <Description>no comment</Description>}
         </ReviewWrapper>
+        <Footer content={content} />
       </PageWrapper>
     </>
   )

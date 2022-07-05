@@ -1,15 +1,23 @@
 import { PayloadAction } from '@reduxjs/toolkit'
 import { call, put } from 'redux-saga/effects'
 import PATHNAME from 'src/constants/pathname'
-import { fetchPostsSucceed, postSucceed } from 'src/redux/post'
-import { Post } from 'src/types'
+import {
+  deletePostSucceed,
+  fetchPostsSucceed,
+  postSucceed,
+  reviewSucceed,
+} from 'src/redux/post'
+import { Post, Review } from 'src/types'
 
-import { FetchPostsRequestPayload, PostRequestPayload } from '../types'
+import {
+  DeletePostsRequestPayload,
+  FetchPostsRequestPayload,
+  PostRequestPayload,
+} from '../types'
 
 export function* fetchPostsWorker(
   action: PayloadAction<FetchPostsRequestPayload>
 ) {
-  console.log(action.payload.page)
   try {
     const response = (yield call(() =>
       fetch(`${PATHNAME.WEB_LINK}/posts?page=${action.payload.page}&limit=10`)
@@ -25,9 +33,9 @@ export function* fetchPostsWorker(
 }
 
 export function* postWorker(action: PayloadAction<PostRequestPayload>) {
-  const { title } = action.payload
+  const { title, description, id, isPost } = action.payload
 
-  const requestOptions = {
+  const RequestOptions = {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -35,19 +43,51 @@ export function* postWorker(action: PayloadAction<PostRequestPayload>) {
     },
     body: JSON.stringify({
       title,
-      description: '如題',
+      description,
+      body: title,
+      post: id,
     }),
   }
 
-  console.log(requestOptions)
   try {
     const response = (yield call(() =>
-      fetch(`${PATHNAME.WEB_LINK}/posts`, requestOptions)
+      isPost
+        ? fetch(`${PATHNAME.WEB_LINK}/posts`, RequestOptions)
+        : fetch(`${PATHNAME.WEB_LINK}/reviews`, RequestOptions)
     )) as Response
 
-    const status = (yield response.json()) as { status: string; post: Post }
+    const status = (yield response.json()) as {
+      status: string
+      post: Post
+      review: Review
+    }
 
-    yield put(postSucceed({ status }))
+    isPost
+      ? ((yield put(postSucceed({ status }))) as Post)
+      : ((yield put(reviewSucceed({ status }))) as Review)
+  } catch (err) {
+    // TODO: handle error
+    console.log(err)
+  }
+}
+
+export function* deletePostWorker(
+  action: PayloadAction<DeletePostsRequestPayload>
+) {
+  const RequestOptions = {
+    method: 'DELETE',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  }
+
+  try {
+    const { id } = action.payload
+
+    yield call(fetch, `${PATHNAME.WEB_LINK}/posts?id=${id}`, RequestOptions)
+
+    yield put(deletePostSucceed(id))
   } catch (err) {
     // TODO: handle error
     console.log(err)

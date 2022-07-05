@@ -19,7 +19,7 @@ const CutoffSelector = ({
           onSlideChange={swiper =>
             setCategory(cutoffCategory[swiper.activeIndex])
           }
-          onSwiper={swiper => console.log(swiper)}
+          onSwiper={swiper => setCategory(cutoffCategory[swiper.activeIndex])}
         >
           {cutoffCategory.map(sub => (
             <SwiperSlide key={sub}>

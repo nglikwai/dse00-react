@@ -17,16 +17,20 @@ const ReviewCard = ({ review }: { review: Review }) => {
             src='/static/images/default_avatar.png'
             width={40}
             height={40}
-            level={review.author.level}
+            level={review.author ? review.author.level : 1}
           />
         </UserWrapper>
 
         <ReviewWrapper>
           <ReviewBody>
             <ReviewAuthor>
-              {review.author.username.toUpperCase()}
-              <Grade level={review.author.level}>
-                {review.author.level > 5 && review.author.grade}
+              {review.author.username
+                ? review.author.username.toUpperCase()
+                : 'DSEJJ'}
+              <Grade level={review.author ? review.author.level : 1}>
+                {review.author
+                  ? review.author.level > 5 && review.author.grade
+                  : ''}
               </Grade>
             </ReviewAuthor>
             {review.body}

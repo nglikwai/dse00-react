@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
 import createSagaMiddleware from 'redux-saga'
-import cutoffReducer from 'src/redux/cutoff'
-import postReducer from 'src/redux/post'
+import { cutoffReducer } from 'src/redux/cutoff'
+import { postReducer } from 'src/redux/post'
 import { rootSaga } from 'src/redux/rootSaga'
-import userReducer from 'src/redux/user'
+import { userReducer } from 'src/redux/user'
 
 import { PostApi } from '../services/PostApi'
 

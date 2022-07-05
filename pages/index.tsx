@@ -1,21 +1,29 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { NextSeo } from 'next-seo'
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import InfiniteScroll from 'react-infinite-scroller'
 import { useDispatch, useSelector } from 'react-redux'
+import ChatInputBox from 'src/components/ChatInputBox'
+import Footer from 'src/components/global/Footer'
 import PageWrapper from 'src/components/global/PageWrapper'
 import PostCard from 'src/components/PostCard'
 import PostLoader from 'src/components/PostLoader'
 import PATHNAME from 'src/constants/pathname'
-import { fetchPostsRequest, fetchPostsSucceed } from 'src/redux/post'
-import { Post, State } from 'src/types'
+import {
+  fetchPostsRequest,
+  fetchPostsSucceed,
+  postSelector,
+} from 'src/redux/post'
+import { Post } from 'src/types'
 type Props = {
   posts: Post[]
 }
 
 const Home: NextPage<Props> = ({ posts = [] }) => {
+  const content = useMemo(() => <ChatInputBox />, [])
+
   const dispatch = useDispatch()
 
   const { t } = useTranslation()
@@ -45,7 +53,7 @@ const Home: NextPage<Props> = ({ posts = [] }) => {
     dispatch(fetchPostsSucceed({ posts }))
   }, [posts, dispatch])
 
-  const { result, currentPage } = useSelector((state: State) => state.post)
+  const { result, currentPage } = useSelector(postSelector)
 
   return (
     <div>
@@ -137,6 +145,7 @@ const Home: NextPage<Props> = ({ posts = [] }) => {
             <PostCard key={post.title} post={post} index={index} />
           ))}
         </InfiniteScroll>
+        <Footer content={content} />
       </PageWrapper>
     </div>
   )

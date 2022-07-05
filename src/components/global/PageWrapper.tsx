@@ -2,8 +2,6 @@ import * as R from 'ramda'
 import React from 'react'
 import styled from 'styled-components'
 
-import Footer from './Footer'
-
 type Props = {
   children: React.ReactNode
 }
@@ -15,7 +13,6 @@ const PageWrapper = (props: Props) => {
     <Wrapper>
       <InnerWrapper>
         <ContentWrapper withTopPadding>{children}</ContentWrapper>
-        <Footer />
       </InnerWrapper>
     </Wrapper>
   )
