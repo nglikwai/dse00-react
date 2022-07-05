@@ -2,9 +2,8 @@ import { PayloadAction } from '@reduxjs/toolkit'
 import { call, put } from 'redux-saga/effects'
 import PATHNAME from 'src/constants/pathname'
 import { fetchCutoffsSucceed } from 'src/redux/cutoff'
+import { FetchCutoffsRequestPayload } from 'src/redux/cutoff/types'
 import { Cutoff } from 'src/types'
-
-import { FetchCutoffsRequestPayload } from '../types'
 
 export function* fetchCutoffsWorker(
   action: PayloadAction<FetchCutoffsRequestPayload>
