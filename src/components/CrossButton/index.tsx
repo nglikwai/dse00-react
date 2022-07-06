@@ -1,10 +1,9 @@
 import React from 'react'
-import PATHNAME from 'src/constants/pathname'
 import styled from 'styled-components'
 
 const CrossButton = ({ onClick }: { onClick: () => void }) => {
   return (
-    <Wrapper onClick={onClick} show={!!PATHNAME.WEB_LINK.includes('local')}>
+    <Wrapper onClick={onClick} show={process.env.NODE_ENV === 'development'}>
       X
     </Wrapper>
   )

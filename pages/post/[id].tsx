@@ -1,9 +1,10 @@
+import { useGesture } from '@use-gesture/react'
 import dayjs from 'dayjs'
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import * as R from 'ramda'
-import React, { useEffect, useMemo } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import ChatInputBox from 'src/components/ChatInputBox'
@@ -21,6 +22,15 @@ type Props = {
 }
 
 const MainPost: NextPage<Props> = ({ post }: Props) => {
+  const [isdown, setIsdown] = useState(false)
+
+  const bind = useGesture({
+    onWheel: state => {
+      state.direction[1] > 0 && state.velocity[1] > 30 && setIsdown(true)
+      state.direction[1] < 0 && state.velocity[1] > 70 && setIsdown(false)
+    },
+  })
+
   const content = useMemo(() => <ChatInputBox />, [])
 
   const { t } = useTranslation()
@@ -64,7 +74,7 @@ const MainPost: NextPage<Props> = ({ post }: Props) => {
     <>
       <NextSeo {...seoConfig} />
 
-      <Title>{post.title.substring(0, 60)}</Title>
+      <Title isdown={isdown}>{post.title.substring(0, 60)}</Title>
       <CrossButton onClick={onClickDelete} />
       <Header>
         <img src='/static/images/default_avatar.png' width={60} height={60} />
@@ -75,9 +85,9 @@ const MainPost: NextPage<Props> = ({ post }: Props) => {
       </Header>
 
       <Description>{post.description}</Description>
-      <ReviewWrapper>
+      <ReviewWrapper {...bind()}>
         {post.reviews.map(review => (
-          <ReviewCard review={review} key={review.body} />
+          <ReviewCard review={review} key={review._id} />
         ))}
         {!R.isEmpty(addedReview) && addedReview.post === post._id && (
           <ReviewCard review={addedReview} />
@@ -103,7 +113,7 @@ export async function getServerSideProps(param: Param) {
 
 export default MainPost
 
-const Title = styled.div`
+const Title = styled(props => <div {...props} />)`
   position: fixed;
   top: 0;
   left: 0;
@@ -117,6 +127,8 @@ const Title = styled.div`
   width: calc(100% - 60px);
   background-color: ${({ theme }) => theme.palette.mainTheme};
   z-index: ${zIndex.postTitle};
+  font-size: ${props => (props.isdown ? '10px' : '16px')};
+  transition: 0.5s;
 `
 
 const Description = styled.div`

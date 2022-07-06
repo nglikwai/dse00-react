@@ -1,13 +1,16 @@
 import dayjs from 'dayjs'
-import React from 'react'
+import React, { useState } from 'react'
 import { Review } from 'src/types'
 import { initializeDayjs } from 'src/utils/urlUtils'
 import styled from 'styled-components'
 
+import ReplyBox from '../ReplyBox'
 import ReplyCard from '../ReplyCard'
 
 const ReviewCard = ({ review }: { review: Review }) => {
   initializeDayjs()
+
+  const [isReply, setIsReply] = useState(false)
 
   return (
     <OuterWrapper>
@@ -37,7 +40,7 @@ const ReviewCard = ({ review }: { review: Review }) => {
           </ReviewBody>
           <ActionWrapper>
             {dayjs(review.createdAt).fromNow().substring(0, 3)}
-            <Action>Reply</Action>
+            <Action onClick={() => setIsReply(!isReply)}>Reply</Action>
           </ActionWrapper>
         </ReviewWrapper>
       </Wrapper>
@@ -49,6 +52,7 @@ const ReviewCard = ({ review }: { review: Review }) => {
             author={review.replyAuthor[index]}
           />
         ))}
+        {isReply && <ReplyBox />}
       </ReplyWrapper>
     </OuterWrapper>
   )
@@ -59,11 +63,12 @@ export default ReviewCard
 const Avator = styled(props => <img {...props} />)`
   box-shadow: 0 0 8px ${props => (props.level > 4 ? '#fff' : 'transparent')};
   border-radius: 50%;
+  padding-top: 8px;
 `
 
 const Wrapper = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   padding: 8px 0;
 `
 
@@ -72,7 +77,7 @@ const OuterWrapper = styled.div``
 const ReviewAuthor = styled.div`
   font-size: 13px;
   font-weight: bold;
-  padding-bottom: 4px;
+  padding-bottom: 3px;
   opacity: 0.7;
   display: flex;
   align-items: center;
@@ -102,14 +107,18 @@ const Grade = styled(props => <div {...props} />)`
 
 const ActionWrapper = styled.div`
   color: #999;
-  font-size: 14px;
-  padding: 0 20px;
+  font-size: 13px;
+  padding: 0 16px;
 `
 
 const ReviewWrapper = styled.div`
   margin: 0 10px;
 `
 
-const Action = styled.span`
-  padding: 10px;
+const Action = styled.button`
+  padding: 6px 0 4px 15px;
+  background: none;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
 `
