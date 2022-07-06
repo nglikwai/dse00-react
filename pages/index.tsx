@@ -7,7 +7,6 @@ import InfiniteScroll from 'react-infinite-scroller'
 import { useDispatch, useSelector } from 'react-redux'
 import ChatInputBox from 'src/components/ChatInputBox'
 import Footer from 'src/components/global/Footer'
-import PageWrapper from 'src/components/global/PageWrapper'
 import PostCard from 'src/components/PostCard'
 import PostLoader from 'src/components/PostLoader'
 import PATHNAME from 'src/constants/pathname'
@@ -19,9 +18,10 @@ import {
 import { Post } from 'src/types'
 type Props = {
   posts: Post[]
+  theme: { palette: { backgroundColor: string } }
 }
 
-const Home: NextPage<Props> = ({ posts = [] }) => {
+const Home: NextPage<Props> = ({ posts = [], theme }) => {
   const content = useMemo(() => <ChatInputBox />, [])
 
   const dispatch = useDispatch()
@@ -74,7 +74,7 @@ const Home: NextPage<Props> = ({ posts = [] }) => {
         <meta name='msapplication-config' content='/icons/browserconfig.xml' />
         <meta name='msapplication-TileColor' content='121212' />
         <meta name='msapplication-tap-highlight' content='no' />
-        <meta name='theme-color' content='#000000' />
+        <meta name='theme-color' content={theme.palette.backgroundColor} />
 
         <link rel='apple-touch-icon' href='/static/images/icon.png' />
         <link
@@ -134,19 +134,17 @@ const Home: NextPage<Props> = ({ posts = [] }) => {
         />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <PageWrapper>
-        <InfiniteScroll
-          pageStart={0}
-          loadMore={loadFunc}
-          hasMore={true || false}
-          loader={<PostLoader key={Math.floor(Math.random())} />}
-        >
-          {result.map((post, index) => (
-            <PostCard key={post.title} post={post} index={index} />
-          ))}
-        </InfiniteScroll>
-        <Footer content={content} />
-      </PageWrapper>
+      <InfiniteScroll
+        pageStart={0}
+        loadMore={loadFunc}
+        hasMore={true || false}
+        loader={<PostLoader key={Math.floor(Math.random())} />}
+      >
+        {result.map((post, index) => (
+          <PostCard key={post.title} post={post} index={index} />
+        ))}
+      </InfiniteScroll>
+      <Footer content={content} />
     </div>
   )
 }

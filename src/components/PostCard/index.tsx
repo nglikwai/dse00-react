@@ -16,9 +16,10 @@ const PostCard = ({ post, index }: { post: Post; index: number }) => {
           {post.title.substring(0, 60)}
           <Author>- {post.author.username}</Author>
         </Title>
-
         <Content>
-          {descriptionFilter(post.description).substring(0, 60)}
+          {post.reviews[0]
+            ? post.reviews[post.reviews.length - 1].body
+            : descriptionFilter(post.description).substring(0, 60)}
         </Content>
       </Wrapper>
     </Link>
@@ -36,7 +37,7 @@ const Wrapper = styled(props => <div {...props} />)`
   :hover {
     background-color: ${({ theme }) => theme.palette.secondaryColor};
   }
-  padding: 20px 12px;
+  padding: 19px 12px;
   cursor: pointer;
   border-radius: 2rem;
   animation: ${rollIn} ${props => props.index / 10}s ease-in;

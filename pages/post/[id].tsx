@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import ChatInputBox from 'src/components/ChatInputBox'
 import CrossButton from 'src/components/CrossButton'
 import Footer from 'src/components/global/Footer'
-import PageWrapper from 'src/components/global/PageWrapper'
 import ReviewCard from 'src/components/ReviewCard'
 import PATHNAME from 'src/constants/pathname'
 import { zIndex } from 'src/constants/zIndex'
@@ -65,30 +64,28 @@ const MainPost: NextPage<Props> = ({ post }: Props) => {
     <>
       <NextSeo {...seoConfig} />
 
-      <PageWrapper>
-        <Title>{post.title}</Title>
-        <CrossButton onClick={onClickDelete} />
-        <Header>
-          <img src='/static/images/default_avatar.png' width={60} height={60} />
-          <UserData>
-            <Author> {post.author.username}</Author>
-            <Date>{dayjs(post.createdAt).fromNow()}</Date>
-          </UserData>
-        </Header>
+      <Title>{post.title.substring(0, 60)}</Title>
+      <CrossButton onClick={onClickDelete} />
+      <Header>
+        <img src='/static/images/default_avatar.png' width={60} height={60} />
+        <UserData>
+          <Author> {post.author.username}</Author>
+          <Date>{dayjs(post.createdAt).fromNow()}</Date>
+        </UserData>
+      </Header>
 
-        <Description>{post.description}</Description>
-        <ReviewWrapper>
-          {post.reviews.map(review => (
-            <ReviewCard review={review} key={review.body} />
-          ))}
-          {!R.isEmpty(addedReview) && addedReview.post === post._id && (
-            <ReviewCard review={addedReview} />
-          )}
+      <Description>{post.description}</Description>
+      <ReviewWrapper>
+        {post.reviews.map(review => (
+          <ReviewCard review={review} key={review.body} />
+        ))}
+        {!R.isEmpty(addedReview) && addedReview.post === post._id && (
+          <ReviewCard review={addedReview} />
+        )}
 
-          {R.isEmpty(post.reviews) && <Description>no comment</Description>}
-        </ReviewWrapper>
-        <Footer content={content} />
-      </PageWrapper>
+        {R.isEmpty(post.reviews) && <Description>no comment</Description>}
+      </ReviewWrapper>
+      <Footer content={content} />
     </>
   )
 }
@@ -109,16 +106,15 @@ export default MainPost
 const Title = styled.div`
   position: fixed;
   top: 0;
-  height: 55px;
   left: 0;
   z-index: ${zIndex.postTitle};
-  padding: 0 30px;
+  padding: 10px 30px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
   font-weight: bold;
-  width: 100%;
+  width: calc(100% - 60px);
   background-color: ${({ theme }) => theme.palette.mainTheme};
   z-index: ${zIndex.postTitle};
 `

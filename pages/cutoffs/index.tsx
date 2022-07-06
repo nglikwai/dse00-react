@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next'
 import CutoffCard from 'src/components/CutoffCard'
 import CutoffSelector from 'src/components/CutoffSelector'
 import Footer from 'src/components/global/Footer'
-import PageWrapper from 'src/components/global/PageWrapper'
 import { cutoffCategory } from 'src/constants'
 import PATHNAME from 'src/constants/pathname'
 import { Cutoff } from 'src/types'
@@ -39,15 +38,13 @@ const MainPost: NextPage<Props> = ({ cutoffs = [] }: Props) => {
     <>
       <NextSeo {...seoConfig} />
 
-      <PageWrapper>
-        <CutoffSelector setCategory={setCategory} />
-        {cutoffs
-          .filter(subject => subject.category === category)
-          .map(cutoff => (
-            <CutoffCard key={cutoff.title} cutoff={cutoff} />
-          ))}
-        <Footer />
-      </PageWrapper>
+      <CutoffSelector setCategory={setCategory} />
+      {cutoffs
+        .filter(subject => subject.category === category)
+        .map(cutoff => (
+          <CutoffCard key={cutoff.title} cutoff={cutoff} />
+        ))}
+      <Footer />
     </>
   )
 }

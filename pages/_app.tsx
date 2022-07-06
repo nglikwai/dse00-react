@@ -4,6 +4,7 @@ import type { AppProps } from 'next/app'
 import { useState } from 'react'
 import { Provider as ReduxProvider } from 'react-redux'
 import Header from 'src/components/global/Header'
+import PageWrapper from 'src/components/global/PageWrapper'
 import { darkTheme, theme } from 'src/constants/theme'
 import { store } from 'src/redux/store'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
@@ -25,8 +26,10 @@ const App = ({ Component, pageProps }: AppProps) => {
       <ThemeProvider theme={darkmode ? darkTheme : theme}>
         <GlobalStyle />
         <ReduxProvider store={store}>
-          <Header darkmode={darkmode} setDarkmode={setDarkmode} />
-          <Component {...pageProps} />
+          <PageWrapper>
+            <Header darkmode={darkmode} setDarkmode={setDarkmode} />
+            <Component theme={darkmode ? darkTheme : theme} {...pageProps} />
+          </PageWrapper>
         </ReduxProvider>
       </ThemeProvider>
     </>
