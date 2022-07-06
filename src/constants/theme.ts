@@ -46,7 +46,7 @@ export const theme: Theme = {
 
 export const darkTheme: Theme = {
   palette: {
-    mainTheme: '#1F1F1F',
+    mainTheme: '#161616',
     backgroundColor: '#000',
     secondaryColor: '#222',
     tertiaryColor: '#242424',

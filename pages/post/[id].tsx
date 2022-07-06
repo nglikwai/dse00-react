@@ -17,7 +17,6 @@ import { deletePostRequest } from 'src/redux/post'
 import { Post, State } from 'src/types'
 import { initializeDayjs } from 'src/utils/urlUtils'
 import styled from 'styled-components'
-
 type Props = {
   post: Post
 }
@@ -82,7 +81,9 @@ const MainPost: NextPage<Props> = ({ post }: Props) => {
           {post.reviews.map(review => (
             <ReviewCard review={review} key={review.body} />
           ))}
-          {!R.isEmpty(addedReview) && <ReviewCard review={addedReview} />}
+          {!R.isEmpty(addedReview) && addedReview.post === post._id && (
+            <ReviewCard review={addedReview} />
+          )}
 
           {R.isEmpty(post.reviews) && <Description>no comment</Description>}
         </ReviewWrapper>
@@ -108,14 +109,18 @@ export default MainPost
 const Title = styled.div`
   position: fixed;
   top: 0;
-  margin: 0 60px;
   height: 55px;
+  left: 0;
   z-index: ${zIndex.postTitle};
+  padding: 0 30px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
   font-weight: bold;
+  width: 100%;
+  background-color: ${({ theme }) => theme.palette.mainTheme};
+  z-index: ${zIndex.postTitle};
 `
 
 const Description = styled.div`

@@ -10,7 +10,10 @@ const PATHNAME = {
   STUDENTS: '/students',
   NEW_CASE: '/students/newcase',
   FIND_Post: '/',
-  WEB_LINK: webLink.production,
+  WEB_LINK:
+    process.env.NODE_ENV === 'development'
+      ? webLink.development
+      : webLink.production,
 }
 
 export default PATHNAME
