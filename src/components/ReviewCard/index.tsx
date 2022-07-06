@@ -39,7 +39,7 @@ const ReviewCard = ({ review }: { review: Review }) => {
             {review.body}
           </ReviewBody>
           <ActionWrapper>
-            {dayjs(review.createdAt).fromNow().substring(0, 3)}
+            {dayjs(review.createdAt).fromNow()}
             <Action onClick={() => setIsReply(!isReply)}>Reply</Action>
           </ActionWrapper>
         </ReviewWrapper>
@@ -121,4 +121,5 @@ const Action = styled.button`
   border: none;
   color: #aaa;
   cursor: pointer;
+  font-size: 13px;
 `

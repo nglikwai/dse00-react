@@ -66,17 +66,14 @@ const Wrapper = styled(props => <div {...props} />)`
   animation: ${rollIn} ${props => props.index / 10}s ease-in;
   transition: 0.5s;
   display: inline-block;
-  width: 80%;
+  width: 79%;
 `
 
 const ControlButton = styled.div`
   width: 15%;
   align-items: center;
   display: inline;
-  padding-left: 10px;
-  &:last-child {
-    margin-left: 30px;
-  }
+  padding-left: 30px;
 `
 
 const InnerWrapper = styled(props => <div {...props} />)`
