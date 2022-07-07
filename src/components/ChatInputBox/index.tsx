@@ -76,7 +76,7 @@ const Input = styled.input`
     outline: none !important;
     border: none;
     width: 70%;
-    height: 30px;
+    height: 20px;
     border-radius: 2rem;
     position: absolute;
     background-color: ${({ theme }) => theme.palette.secondaryColor};

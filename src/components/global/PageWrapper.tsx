@@ -27,7 +27,7 @@ const PageWrapper = (props: Props) => {
         state.distance[1] > 20 &&
         dispatch(setIsdown(true))
       state.direction[1] > 0 &&
-        state.distance[1] > 30 &&
+        state.distance[1] > 25 &&
         dispatch(setIsdown(false))
     },
   })
