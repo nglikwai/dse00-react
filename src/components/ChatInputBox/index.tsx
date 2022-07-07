@@ -6,7 +6,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { postRequest } from 'src/redux/post'
 import { setIsdown } from 'src/redux/user'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 const ChatInputBox = () => {
   const [term, setTerm] = useState('')
@@ -48,30 +48,27 @@ const ChatInputBox = () => {
 
 export default ChatInputBox
 
-const BackButton = styled.button`
-  position: absolute;
-  transform: translateY(70px);
-  left: 4px;
-  border: none;
+const baseButton = css`
   background-color: ${({ theme }) => theme.palette.mainTheme};
+  position: absolute;
+  border: none;
   transition: 0.3s ease-in;
   width: 12%;
   height: 0;
   opacity: 0;
   cursor: pointer;
+  transform: scale(0);
+`
+
+const BackButton = styled.button`
+  ${baseButton}
+  left: 4px;
 `
 
 const SendButton = styled.button`
-  position: absolute;
-  transform: translateY(70px);
+  ${baseButton}
   right: 13px;
-  border: none;
-  background-color: ${({ theme }) => theme.palette.mainTheme};
-  transition: 0.3s ease-in;
   width: 11%;
-  height: 0;
-  opacity: 0;
-  cursor: pointer;
 `
 
 const Input = styled.input`
@@ -79,7 +76,7 @@ const Input = styled.input`
     outline: none !important;
     border: none;
     width: 70%;
-    height: 35px;
+    height: 30px;
     border-radius: 2rem;
     position: absolute;
     background-color: ${({ theme }) => theme.palette.secondaryColor};
@@ -87,7 +84,7 @@ const Input = styled.input`
     color: ${({ theme }) => theme.fontColor};
   }
   &:focus ~ button {
-    transform: translateY(0px);
+    transform: scale(1);
     position: absolute;
     opacity: 1;
     height: 50px;

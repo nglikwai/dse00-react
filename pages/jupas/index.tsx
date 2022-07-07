@@ -18,7 +18,7 @@ const Jupas = () => {
       <Wrapper>
         <Word>JUPAS CUTOFF </Word>
 
-        <DefaultInput placeholder='Jupas Code (not yet open)' />
+        <DefaultInput placeholder='Jupas Code (not yet open)' required />
         <SubmitButton disabled={isLoading} onClick={submitHandler}>
           搜尋
         </SubmitButton>
