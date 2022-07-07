@@ -1,10 +1,9 @@
-import { useGesture } from '@use-gesture/react'
 import dayjs from 'dayjs'
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import * as R from 'ramda'
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import ChatInputBox from 'src/components/ChatInputBox'
@@ -14,6 +13,7 @@ import ReviewCard from 'src/components/ReviewCard'
 import PATHNAME from 'src/constants/pathname'
 import { zIndex } from 'src/constants/zIndex'
 import { deletePostRequest } from 'src/redux/post'
+import { userSelector } from 'src/redux/user'
 import { Post, State } from 'src/types'
 import { initializeDayjs } from 'src/utils/urlUtils'
 import styled from 'styled-components'
@@ -22,15 +22,6 @@ type Props = {
 }
 
 const MainPost: NextPage<Props> = ({ post }: Props) => {
-  const [isdown, setIsdown] = useState(false)
-
-  const bind = useGesture({
-    onWheel: state => {
-      state.direction[1] > 0 && setIsdown(true)
-      state.direction[1] < 0 && setIsdown(false)
-    },
-  })
-
   const content = useMemo(() => <ChatInputBox />, [])
 
   const { t } = useTranslation()
@@ -38,6 +29,8 @@ const MainPost: NextPage<Props> = ({ post }: Props) => {
   const router = useRouter()
 
   const dispatch = useDispatch()
+
+  const { isdown } = useSelector(userSelector)
 
   initializeDayjs()
 
@@ -71,10 +64,10 @@ const MainPost: NextPage<Props> = ({ post }: Props) => {
   }
 
   return (
-    <>
+    <Wrapper>
       <NextSeo {...seoConfig} />
 
-      <Title isdown={isdown}>{post.title.substring(0, 60)}</Title>
+      <Title isdown={isdown}>{post.title.substring(0, 50)}</Title>
       <CrossButton onClick={onClickDelete} />
       <Header>
         <img src='/static/images/default_avatar.png' width={60} height={60} />
@@ -84,8 +77,8 @@ const MainPost: NextPage<Props> = ({ post }: Props) => {
         </UserData>
       </Header>
 
-      <Description>{post.description}</Description>
-      <ReviewWrapper {...bind()}>
+      <Description>{post.description.substring(0, 60)}</Description>
+      <ReviewWrapper>
         {post.reviews.map(review => (
           <ReviewCard review={review} key={review._id} />
         ))}
@@ -96,7 +89,7 @@ const MainPost: NextPage<Props> = ({ post }: Props) => {
         {R.isEmpty(post.reviews) && <Description>no comment</Description>}
       </ReviewWrapper>
       <Footer content={content} />
-    </>
+    </Wrapper>
   )
 }
 
@@ -112,6 +105,10 @@ export async function getServerSideProps(param: Param) {
 }
 
 export default MainPost
+
+const Wrapper = styled.div`
+  padding: 40px 0;
+`
 
 const Title = styled(props => <div {...props} />)`
   position: fixed;

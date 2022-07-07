@@ -42,6 +42,6 @@ const OuterWrapper = styled.div`
 
 const Date = styled.div`
   color: #ccc;
-  font-size: 13px;
+  font-size: 12px;
   padding-right: 10px;
 `

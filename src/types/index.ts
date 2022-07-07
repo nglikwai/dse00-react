@@ -68,7 +68,7 @@ export type State = {
     isDelete: boolean
   }
   cutoff: { result: Cutoff[] }
-  user: { isDarkmode: boolean }
+  user: { isDarkmode: boolean; isdown: boolean }
 }
 
 export type Cutoff = {

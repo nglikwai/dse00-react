@@ -1,7 +1,9 @@
+import { useGesture } from '@use-gesture/react'
 import * as R from 'ramda'
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { setIsdown } from 'src/redux/user'
 import styled from 'styled-components'
-
 type Props = {
   children: React.ReactNode
 }
@@ -9,8 +11,29 @@ type Props = {
 const PageWrapper = (props: Props) => {
   const { children } = props
 
+  const dispatch = useDispatch()
+
+  const bind = useGesture({
+    onWheel: state => {
+      state.direction[1] > 0 &&
+        state.velocity[1] > 30 &&
+        dispatch(setIsdown(true))
+      state.direction[1] < 0 &&
+        state.velocity[1] > 50 &&
+        dispatch(setIsdown(false))
+    },
+    onDrag: state => {
+      state.direction[1] > 0 &&
+        state.velocity[1] > 20 &&
+        dispatch(setIsdown(true))
+      state.direction[1] < 0 &&
+        state.velocity[1] > 30 &&
+        dispatch(setIsdown(false))
+    },
+  })
+
   return (
-    <Wrapper>
+    <Wrapper {...bind()}>
       <InnerWrapper>
         <ContentWrapper withTopPadding>{children}</ContentWrapper>
       </InnerWrapper>
@@ -31,7 +54,7 @@ const InnerWrapper = styled.div`
   flex-direction: column;
   min-height: calc(100vh - 165px);
   max-width: 1200px;
-  padding: 60px 10px 100px 10px;
+  padding: 10px 10px 100px 10px;
   margin: 0 auto;
   position: relative;
 `

@@ -1,13 +1,15 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { UserTypes } from './types'
+import { SetIsDownPayload, UserTypes } from './types'
 
 export interface SearchState {
   isDarkmode: boolean
+  isdown: boolean
 }
 
 const initialState: SearchState = {
   isDarkmode: false,
+  isdown: false,
 }
 
 export const userSlice = createSlice({
@@ -17,9 +19,12 @@ export const userSlice = createSlice({
     [UserTypes.switchDarkMode]: state => {
       state.isDarkmode = !state.isDarkmode
     },
+    [UserTypes.setIsdown]: (state, action: PayloadAction<SetIsDownPayload>) => {
+      state.isdown = action.payload
+    },
   },
 })
 
-export const { switchDarkMode } = userSlice.actions
+export const { switchDarkMode, setIsdown } = userSlice.actions
 
 export const userReducer = userSlice.reducer

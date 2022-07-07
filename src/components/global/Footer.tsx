@@ -4,13 +4,17 @@ import Jupas from 'public/static/images/icon-graduation.svg'
 import Blogger from 'public/static/images/icon-post.svg'
 import Cutoff from 'public/static/images/icon-school.svg'
 import React from 'react'
+import { useSelector } from 'react-redux'
+import { userSelector } from 'src/redux/user'
 import styled from 'styled-components'
 
 import HomeButton from '../HomeButton'
 
 const Footer = ({ content }: { content?: JSX.Element | null }) => {
+  const { isdown } = useSelector(userSelector)
+
   return (
-    <Wrapper>
+    <Wrapper isdown={isdown}>
       <FooterWrapper>
         <StyledLink href='https://dse00.blogspot.com/'>
           <Item>
@@ -47,7 +51,7 @@ const StyledLink = styled(Link)`
   cursor: pointer;
 `
 
-const Wrapper = styled.div`
+const Wrapper = styled(props => <div {...props} />)`
   max-width: 100%;
   background-color: ${({ theme }) => theme.palette.mainTheme};
   height: 72px;
@@ -60,7 +64,8 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 0 20px;
-  transition: background-color 1s;
+  transition: 1s;
+  transform: translateY(${props => (props.isdown ? '30px' : '0')});
 `
 
 const FooterWrapper = styled.div`

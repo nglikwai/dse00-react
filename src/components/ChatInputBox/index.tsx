@@ -5,6 +5,7 @@ import * as R from 'ramda'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { postRequest } from 'src/redux/post'
+import { setIsdown } from 'src/redux/user'
 import styled from 'styled-components'
 
 const ChatInputBox = () => {
@@ -28,7 +29,11 @@ const ChatInputBox = () => {
 
   return (
     <>
-      <Input value={term} onChange={e => setTerm(e.target.value)} />
+      <Input
+        value={term}
+        onChange={e => setTerm(e.target.value)}
+        onClick={() => dispatch(setIsdown(false))}
+      />
       <SendButton className='nav-chat-button' onClick={handleSubmit}>
         <Send fill='white' />
       </SendButton>
