@@ -23,11 +23,11 @@ const Header = ({ darkmode, setDarkmode }: Props) => {
 }
 
 const OuterWrapper = styled.div`
-  width: 10%;
+  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   transition: 0.5s;
-  position: fixed;
+  position: sticky;
   top: 0;
   right: 0;
   opacity: 0.9;
@@ -36,7 +36,6 @@ const OuterWrapper = styled.div`
 
 const Wrapper = styled.div`
   color: #fff;
-  padding: 6px 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;

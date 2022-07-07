@@ -33,6 +33,7 @@ const InnerWrapper = styled.div`
   max-width: 1200px;
   padding: 60px 10px 100px 10px;
   margin: 0 auto;
+  position: relative;
 `
 
 const ContentWrapper = styled(props => (

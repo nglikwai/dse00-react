@@ -12,8 +12,8 @@ const PostLoader = () => {
 export default PostLoader
 
 const rollIn = keyframes`
-  0% {transform:translateX(-300px)}
-  100% {transform:translateX(0)}
+  0% {transform:translateX(-100%)}
+  100% {transform:translateX(-20%)}
 `
 
 const Wrapper = styled.div`
@@ -28,7 +28,7 @@ const Wrapper = styled.div`
 
 const LoaderBar = styled.div`
   background-color: ${({ theme }) => theme.palette.mainTheme};
-  width: 100%;
+  width: 150%;
   height: 2px;
-  animation: ${rollIn} 5s infinite;
+  animation: ${rollIn} 5s ease-out infinite;
 `

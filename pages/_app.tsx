@@ -130,8 +130,9 @@ const App = ({ Component, pageProps }: AppProps) => {
       <ThemeProvider theme={currentTheme}>
         <GlobalStyle />
         <ReduxProvider store={store}>
+          <Header darkmode={darkmode} setDarkmode={setDarkmode} />
+
           <PageWrapper>
-            <Header darkmode={darkmode} setDarkmode={setDarkmode} />
             <Component theme={currentTheme} {...pageProps} />
           </PageWrapper>
         </ReduxProvider>

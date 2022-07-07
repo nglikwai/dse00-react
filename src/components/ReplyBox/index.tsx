@@ -7,7 +7,7 @@ const ReplyBox = () => {
   return (
     <Wrapper>
       <img src='/static/images/default_avatar.png' width={25} height={25} />
-      <ReplyBody placeholder='此功能未開通' />
+      <ReplyInput placeholder='此功能未開通' />
       <IconWrapper onClick={() => alert('此功能未開通')}>
         <IconSend fill={theme.palette.mainTheme} />
       </IconWrapper>
@@ -23,7 +23,7 @@ const Wrapper = styled.div`
   padding: 4px 0s;
 `
 
-const ReplyBody = styled.input`
+const ReplyInput = styled.input`
   &::placeholder {
     color: #bbb;
   }
@@ -34,6 +34,8 @@ const ReplyBody = styled.input`
   height: 30px;
   width: 200px;
   padding: 0 10px;
+  background-color: ${({ theme }) => theme.palette.secondaryColor};
+  color: ${({ theme }) => theme.fontColor};
 `
 
 const IconWrapper = styled.div`

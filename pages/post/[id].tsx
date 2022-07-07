@@ -26,7 +26,7 @@ const MainPost: NextPage<Props> = ({ post }: Props) => {
 
   const bind = useGesture({
     onWheel: state => {
-      state.direction[1] > 0 && state.velocity[1] > 10 && setIsdown(true)
+      state.direction[1] > 0 && state.velocity[1] > 1 && setIsdown(true)
       state.direction[1] < 0 && state.velocity[1] > 10 && setIsdown(false)
     },
   })

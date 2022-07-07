@@ -67,6 +67,7 @@ const Wrapper = styled(props => <div {...props} />)`
   transition: 0.5s;
   display: inline-block;
   width: 79%;
+  margin: 0 1% 0 0;
 `
 
 const ControlButton = styled.div`
