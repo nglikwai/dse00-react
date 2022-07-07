@@ -1,6 +1,8 @@
 import Darkmode from 'public/static/images/icon-darkmode.svg'
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { zIndex } from 'src/constants/zIndex'
+import { userSelector } from 'src/redux/user'
 import styled from 'styled-components'
 type Props = {
   darkmode: boolean
@@ -8,8 +10,10 @@ type Props = {
 }
 
 const Header = ({ darkmode, setDarkmode }: Props) => {
+  const { isdown } = useSelector(userSelector)
+
   return (
-    <OuterWrapper>
+    <OuterWrapper isdown={isdown}>
       <Wrapper>
         <LeftWrapper />
         <RightWrapper>
@@ -22,7 +26,7 @@ const Header = ({ darkmode, setDarkmode }: Props) => {
   )
 }
 
-const OuterWrapper = styled.div`
+const OuterWrapper = styled(props => <div {...props} />)`
   width: 100%;
   display: flex;
   justify-content: flex-end;
@@ -32,6 +36,7 @@ const OuterWrapper = styled.div`
   right: 0;
   opacity: 0.9;
   z-index: ${zIndex.header};
+  opacity: ${props => (props.isdown ? '0.3' : '1')};
 `
 
 const Wrapper = styled.div`

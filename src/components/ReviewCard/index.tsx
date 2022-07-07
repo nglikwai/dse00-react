@@ -69,7 +69,7 @@ const Avator = styled(props => <img {...props} />)`
 const Wrapper = styled.div`
   display: flex;
   align-items: flex-start;
-  padding: 8px 0;
+  padding: 2px 0;
 `
 
 const OuterWrapper = styled.div``

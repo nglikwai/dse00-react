@@ -17,27 +17,27 @@ const Footer = ({ content }: { content?: JSX.Element | null }) => {
     <Wrapper isdown={isdown}>
       <FooterWrapper>
         <StyledLink href='https://dse00.blogspot.com/'>
-          <Item>
+          <Item isdown={isdown}>
             <Blogger fill='white' />
             <span>Blog</span>
           </Item>
         </StyledLink>
         <StyledLink href='/cutoffs'>
-          <Item>
+          <Item isdown={isdown}>
             <Cutoff fill='white' />
             CutOff
           </Item>
         </StyledLink>
 
-        <Item>{content || <HomeButton />}</Item>
+        <Item isdown={isdown}>{content || <HomeButton />}</Item>
         <StyledLink href='/jupas'>
-          <Item>
+          <Item isdown={isdown}>
             <Jupas fill='white' />
             JUPAS
           </Item>
         </StyledLink>
         <StyledLink href='/user/login'>
-          <Item>
+          <Item isdown={isdown}>
             <User fill='white' />
             登入
           </Item>
@@ -66,6 +66,7 @@ const Wrapper = styled(props => <div {...props} />)`
   padding: 0 20px;
   transition: 1s;
   transform: translateY(${props => (props.isdown ? '30px' : '0')});
+  opacity: ${props => (props.isdown ? '0.83' : '0.93')};
 `
 
 const FooterWrapper = styled.div`
@@ -79,7 +80,7 @@ const FooterWrapper = styled.div`
   height: 100%;
 `
 
-const Item = styled.div`
+const Item = styled(props => <div {...props} />)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -88,6 +89,7 @@ const Item = styled.div`
   justify-content: space-between;
   transition: 0.3s;
   height: 70%;
+  opacity: ${props => (props.isdown ? '0.4' : '1')};
 `
 
 export default Footer
