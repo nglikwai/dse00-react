@@ -21,8 +21,8 @@ const Login = () => {
       <Wrapper>
         <Word>登入</Word>
         <Welcome>歡迎來到 DSE00</Welcome>
-        <DefaultInput placeholder='用戶名稱' />
-        <DefaultInput placeholder='密碼' type='password' />
+        <DefaultInput placeholder='用戶名稱' required />
+        <DefaultInput placeholder='密碼' type='password' required />
         <SubmitButton disabled={isLoading} onClick={submitHandler}>
           登入
         </SubmitButton>
@@ -69,11 +69,13 @@ const DefaultInput = styled.input`
   max-width: 300px;
   font-size: 18px;
   padding: 0 10px;
+  background-color: ${({ theme }) => theme.palette.backgroundColor};
+  color: ${({ theme }) => theme.fontColor}; ;
 `
 
 const SubmitButton = styled.button`
   &:disabled {
-    background-color: #ccc;
+    opacity: 0.3;
   }
   background-color: ${({ theme }) => theme.palette.mainTheme};
   border: 1px solid #ccc;
@@ -82,7 +84,7 @@ const SubmitButton = styled.button`
   border-radius: 2rem;
   max-width: 320px;
   font-size: 18px;
-  color: ${({ theme }) => theme.palette.backgroundColor};
+  color: white;
   cursor: pointer;
   transition: 0.3s;
 `

@@ -24,10 +24,10 @@ const PageWrapper = (props: Props) => {
     },
     onDrag: state => {
       state.direction[1] > 0 &&
-        state.velocity[1] > 20 &&
+        state.distance[1] > 30 &&
         dispatch(setIsdown(true))
       state.direction[1] < 0 &&
-        state.velocity[1] > 30 &&
+        state.distance[1] > 40 &&
         dispatch(setIsdown(false))
     },
   })

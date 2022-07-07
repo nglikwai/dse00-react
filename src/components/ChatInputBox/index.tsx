@@ -33,6 +33,7 @@ const ChatInputBox = () => {
         value={term}
         onChange={e => setTerm(e.target.value)}
         onClick={() => dispatch(setIsdown(false))}
+        required
       />
       <SendButton className='nav-chat-button' onClick={handleSubmit}>
         <Send fill='white' />

@@ -37,7 +37,7 @@ const PostCard = ({ post, index }: { post: Post; index: number }) => {
           </Link>
           <Content>
             {post.reviews[0]
-              ? post.reviews[post.reviews.length - 1].body
+              ? post.reviews[post.reviews.length - 1].body.substring(0, 60)
               : descriptionFilter(post.description).substring(0, 60)}
           </Content>
         </Wrapper>
