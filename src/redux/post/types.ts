@@ -11,6 +11,8 @@ export enum PostTypes {
   reviewSucceed = 'reviewSucceed',
   deletePostRequest = 'deletePostRequest',
   deletePostSucceed = 'deletePostSucceed',
+  postReplyRequest = 'postReplyRequest',
+  postReplySuccess = 'postReplySuccess',
 }
 
 export type FetchPostsRequestPayload = { page: number }
@@ -30,3 +32,15 @@ export type PostSucceedPayload = { status: { post: Post } }
 export type ReviewSucceedPayload = { status: { post: Post } }
 
 export type DeletePostsRequestPayload = { id: string | string[] | undefined }
+
+export type PostReplyRequestPayload = {
+  postId: string
+  reviewId: string
+  reply: string
+}
+
+export type PostReplySuccessPayload = {
+  author: string
+  reply: string
+  reviewId: string
+}

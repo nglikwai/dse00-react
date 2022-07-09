@@ -13,6 +13,7 @@ import {
   postSelector,
 } from 'src/redux/post'
 import { Post } from 'src/types'
+
 type Props = {
   posts: Post[]
   theme: { palette: { backgroundColor: string } }

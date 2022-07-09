@@ -29,7 +29,7 @@ export const initializeDayjs = () => {
       future: 'in %s',
       past: '%s ',
       s: 'a few seconds',
-      m: '%m m',
+      m: '1 m',
       mm: '%d m',
       h: '1 h',
       hh: '%d h',

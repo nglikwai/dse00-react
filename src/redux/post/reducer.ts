@@ -1,10 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Post, Review } from 'src/types'
+import { Post, Reply, Review } from 'src/types'
 
 import {
   DeletePostsRequestPayload,
   FetchPostsRequestPayload,
   FetchPostsSuccessPayload,
+  PostReplyRequestPayload,
+  PostReplySuccessPayload,
   PostRequestPayload,
   PostSucceedPayload,
   PostTypes,
@@ -17,6 +19,7 @@ export interface SearchState {
   status: string
   addedReview: Review | string
   isDelete: boolean
+  addedReply: Reply[]
 }
 
 const initialState: SearchState = {
@@ -26,6 +29,7 @@ const initialState: SearchState = {
   status: '',
   addedReview: '',
   isDelete: false,
+  addedReply: [],
 }
 
 export const postSlice = createSlice({
@@ -80,6 +84,21 @@ export const postSlice = createSlice({
       state.isDelete = true
       state.result = state.result.filter(post => post._id !== action.payload.id)
     },
+    [PostTypes.postReplyRequest]: (
+      state,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      action: PayloadAction<PostReplyRequestPayload>
+    ) => {
+      state.fetching = true
+    },
+    [PostTypes.postReplySuccess]: (
+      state,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      action: PayloadAction<PostReplySuccessPayload>
+    ) => {
+      state.fetching = false
+      state.addedReply = state.addedReply.concat(action.payload)
+    },
   },
 })
 
@@ -92,6 +111,8 @@ export const {
   reviewSucceed,
   deletePostSucceed,
   deletePostRequest,
+  postReplyRequest,
+  postReplySuccess,
 } = postSlice.actions
 
 export const postReducer = postSlice.reducer

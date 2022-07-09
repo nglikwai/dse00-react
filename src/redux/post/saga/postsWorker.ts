@@ -4,6 +4,7 @@ import PATHNAME from 'src/constants/pathname'
 import {
   deletePostSucceed,
   fetchPostsSucceed,
+  postReplySuccess,
   postSucceed,
   reviewSucceed,
 } from 'src/redux/post'
@@ -12,6 +13,7 @@ import { Post, Review } from 'src/types'
 import {
   DeletePostsRequestPayload,
   FetchPostsRequestPayload,
+  PostReplyRequestPayload,
   PostRequestPayload,
 } from '../types'
 
@@ -88,6 +90,34 @@ export function* deletePostWorker(
     yield call(fetch, `${PATHNAME.WEB_LINK}/posts?id=${id}`, RequestOptions)
 
     yield put(deletePostSucceed(id))
+  } catch (err) {
+    // TODO: handle error
+    console.log(err)
+  }
+}
+
+export function* postReplyWorker(
+  action: PayloadAction<PostReplyRequestPayload>
+) {
+  const { postId, reviewId, reply } = action.payload
+
+  const RequestOptions = {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      postId,
+      reviewId,
+      reply,
+    }),
+  }
+
+  try {
+    yield call(fetch, `${PATHNAME.WEB_LINK}/posts/reply`, RequestOptions)
+
+    yield put(postReplySuccess({ author: 'DSEJJ', reply, reviewId }))
   } catch (err) {
     // TODO: handle error
     console.log(err)

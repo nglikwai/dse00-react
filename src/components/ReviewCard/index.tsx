@@ -1,16 +1,21 @@
 import dayjs from 'dayjs'
+import * as R from 'ramda'
 import React, { useState } from 'react'
-import { Review } from 'src/types'
+import { useSelector } from 'react-redux'
+import { postSelector } from 'src/redux/post'
+import { Reply, Review } from 'src/types'
 import { initializeDayjs } from 'src/utils/urlUtils'
 import styled from 'styled-components'
 
 import ReplyBox from '../ReplyBox'
 import ReplyCard from '../ReplyCard'
 
-const ReviewCard = ({ review }: { review: Review }) => {
+const ReviewCard = ({ review, postId }: { review: Review; postId: string }) => {
   initializeDayjs()
 
   const [isReply, setIsReply] = useState(false)
+
+  const { addedReply } = useSelector(postSelector)
 
   return (
     <OuterWrapper>
@@ -45,6 +50,18 @@ const ReviewCard = ({ review }: { review: Review }) => {
         </ReviewWrapper>
       </Wrapper>
       <ReplyWrapper>
+        {!R.isEmpty(addedReply) &&
+          addedReply.map(
+            (re: Reply) =>
+              re.reviewId === review._id &&
+              re.reply !== R.takeLast(1, review.reply)[0] && (
+                <ReplyCard
+                  key={(re.reviewId, re.author, re.reply)}
+                  reply={re.reply}
+                  author={re.author}
+                />
+              )
+          )}
         {review.reply.map((reply, index) => (
           <ReplyCard
             key={reply}
@@ -52,7 +69,13 @@ const ReviewCard = ({ review }: { review: Review }) => {
             author={review.replyAuthor[index]}
           />
         ))}
-        {isReply && <ReplyBox />}
+        {isReply && (
+          <ReplyBox
+            postId={postId}
+            reviewId={review._id}
+            setIsReply={setIsReply}
+          />
+        )}
       </ReplyWrapper>
     </OuterWrapper>
   )

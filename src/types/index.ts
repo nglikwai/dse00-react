@@ -57,7 +57,7 @@ export type User = {
   avatar: { public_id: string; url: string }
 }
 
-export type Reply = string[]
+export type Reply = { author: string; reply: string; reviewId?: string }
 export type ReplyAuthor = string[]
 
 export type State = {
@@ -66,6 +66,7 @@ export type State = {
     currentPage: number
     addedReview: Review
     isDelete: boolean
+    addedReply: Reply[]
   }
   cutoff: { result: Cutoff[] }
   user: { isDarkmode: boolean; isdown: boolean }

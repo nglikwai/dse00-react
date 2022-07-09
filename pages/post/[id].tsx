@@ -80,10 +80,10 @@ const MainPost: NextPage<Props> = ({ post }: Props) => {
       <Description>{post.description.substring(0, 60)}</Description>
       <ReviewWrapper>
         {post.reviews.map(review => (
-          <ReviewCard review={review} key={review._id} />
+          <ReviewCard review={review} key={review._id} postId={post._id} />
         ))}
         {!R.isEmpty(addedReview) && addedReview.post === post._id && (
-          <ReviewCard review={addedReview} />
+          <ReviewCard review={addedReview} postId={addedReview.post} />
         )}
 
         {R.isEmpty(post.reviews) && <Description>no comment</Description>}

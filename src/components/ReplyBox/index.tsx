@@ -1,14 +1,34 @@
 import IconSend from 'public/static/images/icon-send.svg'
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { theme } from 'src/constants/theme'
+import { postReplyRequest } from 'src/redux/post'
 import styled from 'styled-components'
 
-const ReplyBox = () => {
+const ReplyBox = ({
+  postId,
+  reviewId,
+  setIsReply,
+}: {
+  postId: string
+  reviewId: string
+  setIsReply: (arg: boolean) => void
+}) => {
+  const [reply, setReply] = useState('')
+
+  const dispatch = useDispatch()
+
+  const postReplyHandler = () => {
+    dispatch(postReplyRequest({ postId, reviewId, reply }))
+    setReply('')
+    setIsReply(false)
+  }
+
   return (
     <Wrapper>
       <img src='/static/images/default_avatar.png' width={25} height={25} />
-      <ReplyInput placeholder='此功能未開通' />
-      <IconWrapper onClick={() => alert('此功能未開通')}>
+      <ReplyInput value={reply} onChange={e => setReply(e.target.value)} />
+      <IconWrapper onClick={postReplyHandler}>
         <IconSend fill={theme.palette.mainTheme} />
       </IconWrapper>
     </Wrapper>
@@ -34,7 +54,7 @@ const ReplyInput = styled.input`
   height: 30px;
   width: 200px;
   padding: 0 10px;
-  background-color: ${({ theme }) => theme.palette.secondaryColor};
+  background-color: ${({ theme }) => theme.palette.backgroundColor};
   color: ${({ theme }) => theme.fontColor};
 `
 
