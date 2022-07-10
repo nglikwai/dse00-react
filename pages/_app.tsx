@@ -42,6 +42,8 @@ const App = ({ Component, pageProps }: AppProps) => {
     padding: 0;
     box-sizing: border-box;
     background-color: ${darkmode ? '#111' : '#cc0000'};
+    transition: 1s;
+
   }
 `
 
@@ -127,8 +129,7 @@ const App = ({ Component, pageProps }: AppProps) => {
       <ThemeProvider theme={currentTheme}>
         <GlobalStyle />
         <ReduxProvider store={store}>
-          <Header darkmode={darkmode} setDarkmode={setDarkmode} />
-
+          <Header setDarkmode={setDarkmode} />
           <PageWrapper>
             <Component theme={currentTheme} {...pageProps} />
           </PageWrapper>

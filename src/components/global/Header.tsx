@@ -1,23 +1,48 @@
+import Cookie from 'js-cookie'
 import Darkmode from 'public/static/images/icon-darkmode.svg'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { zIndex } from 'src/constants/zIndex'
 import { userSelector } from 'src/redux/user'
 import styled from 'styled-components'
+
 type Props = {
-  darkmode: boolean
   setDarkmode: (darkmode: boolean) => void
 }
 
-const Header = ({ darkmode, setDarkmode }: Props) => {
+const Header = ({ setDarkmode }: Props) => {
   const { isdown } = useSelector(userSelector)
+
+  const cookieDarkmode = Cookie.get('darkmode')
+
+  const readCookie = () => {
+    if (cookieDarkmode) {
+      setDarkmode(true)
+    } else {
+      setDarkmode(false)
+    }
+  }
+
+  useEffect(() => {
+    readCookie()
+  })
+
+  const onDarkmodeClick = () => {
+    if (cookieDarkmode) {
+      Cookie.remove('darkmode')
+      setDarkmode(false)
+    } else {
+      Cookie.set('darkmode', 'true')
+      setDarkmode(true)
+    }
+  }
 
   return (
     <OuterWrapper isdown={isdown}>
       <Wrapper>
         <LeftWrapper />
         <RightWrapper>
-          <DarkmodeButton onClick={() => setDarkmode(!darkmode)}>
+          <DarkmodeButton onClick={onDarkmodeClick}>
             <Darkmode fill='#fff' />
           </DarkmodeButton>
         </RightWrapper>
