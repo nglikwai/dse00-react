@@ -65,8 +65,8 @@ const Wrapper = styled(props => <div {...props} />)`
   align-items: center;
   padding: 0 20px;
   transition: 1s;
-  transform: translateY(${props => (props.isdown ? '30px' : '0')});
-  opacity: ${props => (props.isdown ? '0.83' : '0.93')};
+  transform: translateY(${props => (props.isdown ? '26px' : '0')});
+  opacity: ${props => (props.isdown ? '0.87' : '0.93')};
 `
 
 const FooterWrapper = styled.div`
