@@ -7,6 +7,7 @@ export type Theme = {
     backgroundColor: ThemeStyle
     secondaryColor: string
     tertiaryColor: string
+    background: string
   }
   width: string
   fontSizes: string[]
@@ -33,8 +34,9 @@ export const theme: Theme = {
   palette: {
     mainTheme: '#cc0000',
     backgroundColor: '#fffcf8',
-    secondaryColor: '#eee',
+    secondaryColor: 'rgba(200,200,200,0.25)',
     tertiaryColor: 'rgba(255, 239, 199, 0.4)',
+    background: `url('/static/images/background-white.svg')`,
   },
   width: '1200px',
   fontSizes: ['14px', '18px', '22px'],
@@ -48,8 +50,9 @@ export const darkTheme: Theme = {
   palette: {
     mainTheme: '#161616',
     backgroundColor: '#000',
-    secondaryColor: '#222',
+    secondaryColor: 'rgba(50,50,50,0.4)',
     tertiaryColor: '#242424',
+    background: `url('/static/images/background-dark.svg')`,
   },
   width: '1200px',
   fontSizes: ['14px', '18px', '22px'],

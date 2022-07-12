@@ -58,7 +58,7 @@ const rollIn = keyframes`
 
 const Wrapper = styled(props => <div {...props} />)`
   :hover {
-    background-color: ${({ theme }) => theme.palette.secondaryColor};
+    background: ${({ theme }) => theme.palette.secondaryColor};
   }
   padding: 19px 12px;
   cursor: pointer;

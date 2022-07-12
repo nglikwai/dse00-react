@@ -27,7 +27,11 @@ const ReplyBox = ({
   return (
     <Wrapper>
       <img src='/static/images/default_avatar.png' width={25} height={25} />
-      <ReplyInput value={reply} onChange={e => setReply(e.target.value)} />
+      <ReplyInput
+        placeholder='留言'
+        value={reply}
+        onChange={e => setReply(e.target.value)}
+      />
       <IconWrapper onClick={postReplyHandler}>
         <IconSend fill={theme.palette.mainTheme} />
       </IconWrapper>
@@ -40,7 +44,7 @@ export default ReplyBox
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  padding: 4px 0s;
+  padding: 5px 0;
 `
 
 const ReplyInput = styled.input`

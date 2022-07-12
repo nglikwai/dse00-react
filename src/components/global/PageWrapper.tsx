@@ -26,9 +26,7 @@ const PageWrapper = (props: Props) => {
       state.direction[1] < 0 &&
         state.distance[1] > 20 &&
         dispatch(setIsdown(true))
-      state.direction[1] > 0 &&
-        state.velocity[1] > 0.1 &&
-        dispatch(setIsdown(false))
+      state.direction[1] > 0 && dispatch(setIsdown(false))
     },
   })
 
@@ -42,9 +40,9 @@ const PageWrapper = (props: Props) => {
 }
 
 const Wrapper = styled.div`
-  background: ${({ theme }) => theme.palette.backgroundColor};
   font-family: ${({ theme }) => theme.fontFamily};
   transition: 1s;
+  background-image: ${({ theme }) => theme.palette.background};
 `
 
 // https://stackoverflow.com/a/31835167
