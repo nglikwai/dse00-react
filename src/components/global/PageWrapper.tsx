@@ -42,7 +42,7 @@ const PageWrapper = (props: Props) => {
 const Wrapper = styled.div`
   font-family: ${({ theme }) => theme.fontFamily};
   transition: 1s;
-  background-image: ${({ theme }) => theme.palette.background};
+  background: ${({ theme }) => theme.palette.backgroundColor};
 `
 
 // https://stackoverflow.com/a/31835167
