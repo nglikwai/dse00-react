@@ -116,29 +116,31 @@ const Author = styled.div`
 const ReplyBox = styled.div`
   :hover,
   :focus {
-    opacity: 0.95;
+    opacity: 1;
   }
-  position: fixed;
+  position: sticky;
   bottom: 0;
   width: 100%;
   background: rgba(256, 256, 256, 0.9);
-  opacity: 0.7;
+  opacity: 1;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 5px;
   border-top: 1px #ddd solid;
+  border-radius: 2rem;
 `
 
 const TextArea = styled.textarea`
   :focus {
     border: #cc0000 1px solid;
   }
-  height: 50px;
+  height: 40px;
   width: 80%;
   border-radius: 2rem;
   box-sizing: border-box;
   border: none;
-  padding: 16px 10px;
+  padding: 10px 10px;
   font-size: 14px;
 `
 

@@ -1,6 +1,8 @@
 import Cookie from 'js-cookie'
+import { useRouter } from 'next/router'
 import Darkmode from 'public/static/images/icon-darkmode.svg'
-import React, { useEffect } from 'react'
+import Back from 'public/static/images/icon-send.svg'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { zIndex } from 'src/constants/zIndex'
 import { userSelector } from 'src/redux/user'
@@ -13,7 +15,11 @@ type Props = {
 const Header = ({ setDarkmode }: Props) => {
   const { isdown } = useSelector(userSelector)
 
+  const [isHomePage, setIsHomePage] = useState(true)
+
   const cookieDarkmode = Cookie.get('darkmode')
+
+  const router = useRouter()
 
   const readCookie = () => {
     if (cookieDarkmode) {
@@ -26,6 +32,10 @@ const Header = ({ setDarkmode }: Props) => {
   useEffect(() => {
     readCookie()
   })
+
+  useEffect(() => {
+    router.pathname === '/' ? setIsHomePage(true) : setIsHomePage(false)
+  }, [router.pathname, setIsHomePage])
 
   const onDarkmodeClick = () => {
     if (cookieDarkmode) {
@@ -40,7 +50,13 @@ const Header = ({ setDarkmode }: Props) => {
   return (
     <OuterWrapper isdown={isdown}>
       <Wrapper>
-        <LeftWrapper />
+        <LeftWrapper>
+          {!isHomePage && (
+            <BackButton onClick={() => router.push('/')}>
+              <Back fill='white' />
+            </BackButton>
+          )}
+        </LeftWrapper>
         <RightWrapper>
           <DarkmodeButton onClick={onDarkmodeClick}>
             <Darkmode fill='#fff' />
@@ -95,6 +111,14 @@ const DarkmodeButton = styled.button`
   padding: 0;
   transition: 0.3s;
   border-radius: 50%;
+`
+
+const BackButton = styled.button`
+  background-color: transparent;
+  border: none;
+  transform: rotate(180deg);
+  margin-left: 10px;
+  cursor: pointer;
 `
 
 export default Header
