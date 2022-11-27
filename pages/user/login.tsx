@@ -1,7 +1,9 @@
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import Footer from 'src/components/global/Footer'
 import PostLoader from 'src/components/PostLoader'
+import { login } from 'src/redux/user'
 import styled from 'styled-components'
 
 const Login = () => {
@@ -9,8 +11,15 @@ const Login = () => {
 
   const router = useRouter()
 
+  const dispatch = useDispatch()
+
+  const [email, setEmeil] = useState('')
+
+  const [password, setPassword] = useState('')
+
   const submitHandler = () => {
     setIsLoading(true)
+    dispatch(login({ email, password }))
     setTimeout(() => {
       router.push('/')
     }, 1500)
@@ -21,8 +30,17 @@ const Login = () => {
       <Wrapper>
         <Word>登入</Word>
         <Welcome>歡迎來到 DSE00</Welcome>
-        <DefaultInput placeholder='用戶名稱' required />
-        <DefaultInput placeholder='密碼' type='password' required />
+        <DefaultInput
+          placeholder='用戶名稱'
+          onChange={e => setEmeil(e.target.value)}
+          required
+        />
+        <DefaultInput
+          placeholder='密碼'
+          onChange={e => setPassword(e.target.value)}
+          type='password'
+          required
+        />
         <SubmitButton disabled={isLoading} onClick={submitHandler}>
           登入
         </SubmitButton>

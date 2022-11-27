@@ -1,9 +1,13 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+import { userSelector } from 'src/redux/user'
 import styled from 'styled-components'
 
 const CrossButton = ({ onClick }: { onClick: () => void }) => {
+  const { user } = useSelector(userSelector)
+
   return (
-    <Wrapper onClick={onClick} show={process.env.NODE_ENV === 'development'}>
+    <Wrapper onClick={onClick} show={user?.role === 'admin'}>
       X
     </Wrapper>
   )

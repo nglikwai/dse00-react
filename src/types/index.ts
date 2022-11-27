@@ -69,7 +69,7 @@ export type State = {
     addedReply: Reply[]
   }
   cutoff: { result: Cutoff[] }
-  user: { isDarkmode: boolean; isdown: boolean }
+  user: { isDarkmode: boolean; isdown: boolean; user?: { role: string } }
 }
 
 export type Cutoff = {
